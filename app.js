@@ -60,7 +60,7 @@ app.get('/user/:uid/demographics',function(req,res){
     displayDemographics(demographics);
     res.render('demographics',{
       title:'Demographics',
-      demographics:demographics
+      demographics:JSON.parse(demographics)[0]
     });
   });
 });
@@ -69,7 +69,7 @@ app.get('/user/:uid/allergies',function(req,res){
     displayAllergies(allergies);
     res.render('allergies',{
       title:'Allergies',
-      allergies:allergies
+      allergies:JSON.parse(allergies)
     });
   });
 });
@@ -78,7 +78,7 @@ app.get('/user/:uid/medications',function(req,res){
     displayMedications(medications);
     res.render('medications',{
       title:'Medications',
-      medications:medications
+      medications:JSON.parse(medications)
     });
   });
 });
@@ -87,7 +87,7 @@ app.get('/user/:uid/immunizations',function(req,res){
     displayImmunizations(immunizations);
     res.render('immunizations',{
       title:'Immunizations',
-      immunizations:immunizations
+      immunizations:JSON.parse(immunizations)
     });
   });
 });

@@ -1,1 +1,6 @@
-<p><%= demographics %></p>
+<div>
+	<a class="family"><%= demographics.name.family %></a>
+    <%- partial('listGivenName', demographics.name.given) %>
+    <div class="dob">Date of Birth:<%= demographics.dob %></div>
+    <p><%=JSON.stringify(demographics) %> </p>
+</div>
