@@ -11,10 +11,10 @@ var express = require('express')
   , partials = require('express-partials');
 
 var demographicsUrl = '/services/ccda/demographics/query/demographics?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-allergyUrl = 'http://localhost:9099/services/ccda/allergy/query/allergy?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-immunizationUrl = 'http://localhost:9099/services/ccda/immunization/query/immunization?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-medicationUrl = 'http://localhost:9099/services/ccda/medication/query/medication?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-labUrl = 'http://localhost:9099/services/ccda/lab/query/lab?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+allergyUrl = '/services/ccda/allergy/query/allergy?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+immunizationUrl = '/services/ccda/immunization/query/immunization?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+medicationUrl = '/services/ccda/medication/query/medication?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+labUrl = '/services/ccda/lab/query/lab?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
 
 var app = express();
 
@@ -47,23 +47,61 @@ app.get('/user/:uid',function(req,res){
   getCCDA(medicationUrl,req.params.uid,function(medications){
     displayMedications(medications);
   });
-  res.send(req.params.uid);
+  getCCDA(immunizationUrl,req.params.uid,function(immunizations){
+    displayImmunizations(immunizations);
+  });
+  res.render('timeline',{
+    title:'TimeLine',
+    uid:req.params.uid
+  });
+});
+app.get('/user/:uid/demographics',function(req,res){
+  getCCDA(demographicsUrl,req.params.uid,function(demographics){
+    displayDemographics(demographics);
+    res.render('demographics',{
+      title:'Demographics',
+      demographics:demographics
+    });
+  });
+});
+app.get('/user/:uid/allergies',function(req,res){
+  getCCDA(allergyUrl,req.params.uid,function(allergies){
+    displayAllergies(allergies);
+    res.render('allergies',{
+      title:'Allergies',
+      allergies:allergies
+    });
+  });
+});
+app.get('/user/:uid/medications',function(req,res){
+  getCCDA(medicationUrl,req.params.uid,function(medications){
+    displayMedications(medications);
+    res.render('medications',{
+      title:'Medications',
+      medications:medications
+    });
+  });
+});
+app.get('/user/:uid/immunizations',function(req,res){
+  getCCDA(immunizationUrl,req.params.uid,function(immunizations){
+    displayImmunizations(immunizations);
+    res.render('immunizations',{
+      title:'Immunizations',
+      immunizations:immunizations
+    });
+  });
 });
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Timeline server listening on port ' + app.get('port'));
 });
 
 function displayAllergies(allergies){
-  console.log("successfully get allergies");
-  console.log(allergies);
 }
 function displayMedications(medications){
-  console.log("successfully get medications");
-  console.log(medications);
 }
 function displayDemographics(demographics){
-  console.log("successfully get demographics");
-  console.log(demographics);
+}
+function displayImmunizations(immunizations){
 }
 function getCCDA(url,uid,callback){
  var options = {
