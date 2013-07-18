@@ -116,10 +116,6 @@ function displayAllergies(allergies){
 function displayMedications(medications){
 }
 function displayDemographics(demographics){
-    $('#demographics').append('demographics',{
-      title:'Demographics',
-      demographics:JSON.parse(demographics)[0]
-    });
 }
 function displayImmunizations(immunizations){
 }

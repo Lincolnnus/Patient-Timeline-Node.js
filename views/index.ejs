@@ -1,3 +1,4 @@
+<% if (!user) { %>
 <div class="hero-unit">   
 	<h1>Welcome to Timeline Viewer</h1> 
 	<p>Timeline Viewer is Based on Node.js</p>   
@@ -5,7 +6,10 @@
 		<a class="btn btn-primary btn-large" href="/login">Login</a>
 	    <a class="btn btn-large" href="/reg">Register</a> 
 	 </p> 
-</div>  
+</div> 
+<% } else { %>
+<div>logged in</div>
+<% } %> 
 
 <div class="row">   
 	<div class="span4">    
