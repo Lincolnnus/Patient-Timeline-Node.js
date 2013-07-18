@@ -3,7 +3,7 @@
 ￼￼<head>
 	<title><%= title %></title>
 	<link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-	<link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/stylesheets/bootstrap-responsive.css" rel="stylesheet">
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 ￼ </head>
   <body>
@@ -17,19 +17,36 @@
 		      </a>
 		      <a class="brand" href="/">GSOC Timeline</a>
 		      <div class="nav-collapse">
-				<ul class="nav">
-				<li class="active"><a href="/">Home</a></li> <li><a href="/login">Login</a></li>
-				<li><a href="/reg">Register</a></li>
-				</ul> </div>
+				 <ul class="nav">
+	              <li class="active"><a href="/">Home</a></li>
+	              <% if (!user) { %>
+	                <li><a href="/login">Login</a></li>
+	                <li><a href="/reg">Register</a></li>
+	              <% } else { %>
+	                <li><a href="/logout">Logout</a></li>
+	              <% } %>
+	            </ul>
 		    </div>
 	 	</div>
 	</div>
 	<div id="container" class="container">
+		<% if (success && success.length ) { %>
+		    <div class="alert alert-success">
+		        <a class="close" data-dismiss="alert" href="#">×</a>
+		        <strong><%= success %></strong>
+		    </div>
+		<% } %>
+		<% if (error && error.length ) { %>
+		    <div class="alert alert-error">
+		        <a class="close" data-dismiss="alert" href="#">×</a>
+		        <strong><%= error %></strong>
+		    </div>
+		<% } %>
 	    <%- body %>
 	    <hr />
 	    <footer><p><a href="" target="_blank">Shao</a> 2013</p> </footer>
 	</div>
   </body>
-  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
   <script src="/javascripts/bootstrap.js"></script>
 </html>
