@@ -1,0 +1,8 @@
+<div class="well">
+	<span class="badge"><%= listAllergy.date_range.start%>-<%= listAllergy.date_range.end%></span>
+	<h3><%= listAllergy.code %></h3>
+	<p><%= listAllergy.severity %></p>
+	<p>Reaction:<%= listAllergy.reaction.name%></p>
+	<p>Reaction Type:<%= listAllergy.reaction_type.name %></p>
+	<p>Allergen: <%= listAllergy.allergen.name %></p>
+</div>

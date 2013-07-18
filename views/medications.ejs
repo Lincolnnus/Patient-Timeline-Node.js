@@ -1,1 +1,21 @@
-<p><%= JSON.stringify(medications) %></p>
+<div class="row-fluid">
+	<div class="span3">
+	  <ul class="nav  nav-pills nav-stacked">
+	    <li class="active">
+	      <a href="#">1998</a> 
+	    </li>
+	    <li>
+	      <a href="#">1996</a> 
+	    </li>
+	  </ul>
+	</div>
+	<div id="immunizationList" class="span9">
+	  <div class="hero-unit">
+	    <h1>Medications</h1>
+	    <div class="row">
+	   		<%- partial('listMedication', medications) %>
+	    </div>
+	  </div>
+	  <div class="row-fluid"></div>
+	</div>
+</div>
