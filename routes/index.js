@@ -1,11 +1,44 @@
 var crypto = require('crypto');
 var User = require('../models/user.js');
+var fs = require('fs')
+  , _ = require('underscore')
+  , path = require('path')
+  , BlueButton = require(path.join(__dirname, '../node_modules/bluebutton/build/bluebutton'));
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
-      res.render('index', {
-        title: 'Home'
-      });
+     if ((req.session.user)&&(req.session.user.xml!=null))
+     {
+          var record = fs.readFileSync(path.resolve(__dirname, '../public/'+req.session.user.xml), 'utf-8');
+          var bb = BlueButton(record);
+          res.render('index', {
+            title: 'Home',
+            allergies:toJSON(bb.allergies()),
+            demographics:toJSON(bb.demographics()),
+            medications:toJSON(bb.medications()),
+            immunizations:toJSON(bb.immunizations()),
+            labs:toJSON(bb.labs()),
+            encounters:toJSON(bb.encounters()),
+            medications:toJSON(bb.medications()),
+            problems:toJSON(bb.problems()),
+            procedures:toJSON(bb.procedures()),
+            vitals:toJSON(bb.vitals())
+          });
+      }else{
+          res.render('index', {
+            title: 'Home',
+            allergies:[],
+            demographics:[],
+            medications:[],
+            immunizations:[],
+            labs:[],
+            encounters:[],
+            medications:[],
+            problems:[],
+            procedures:[],
+            vitals:[]
+          });
+      }
   });
   
   app.get('/reg', checkNotLogin);
@@ -14,7 +47,34 @@ module.exports = function(app) {
       title: 'Register',
     });
   });
-  
+  app.get('/upload',checkLogin);
+  app.get('/upload',function(req,res){
+    res.render('upload',{
+      title:'Upload',
+    });
+  });
+  app.post('/upload',checkLogin);
+  app.post('/upload',function(req,res){
+     if (req.files) {
+        req.body.url = "http://localhost:3000/" + req.files.ccda.path.split("/").slice(-2).join("/")
+        req.body.path = req.files.ccda.path.split("/").slice(-2).join("/")
+      }
+      var currentUser = new User(req.session.user);
+      currentUser.xml = req.body.path;
+      //user already exists
+      User.get(currentUser.name, function(err, user) {
+        //update current user
+        currentUser.update(function(err) {
+          if (err) {
+            req.flash('error', err);
+            return res.redirect('/upload');
+          }
+          req.session.user = currentUser;
+          req.flash('success', 'Successfully Uploaded');
+          res.redirect('/');
+        });
+      });
+  });
   app.post('/reg', checkNotLogin);
   app.post('/reg', function(req, res) {
     //username must be longer than 0 chars
@@ -39,6 +99,7 @@ module.exports = function(app) {
     var newUser = new User({
       name: req.body.username,
       password: password,
+      xml:null
     });
     
     //user already exists
@@ -68,7 +129,7 @@ module.exports = function(app) {
       title: 'Login',
     });
   });
-  
+
   app.post('/login', checkNotLogin);
   app.post('/login', function(req, res) {
     //generate md5 value
@@ -112,4 +173,8 @@ function checkNotLogin(req, res, next) {
     return res.redirect('/');
   }
   next();
+}
+
+function toJSON(target) {
+  return JSON.parse(target.json())
 }

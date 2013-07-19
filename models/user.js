@@ -3,6 +3,7 @@ var mongodb = require('./db');
 function User(user) {
   this.name = user.name;
   this.password = user.password;
+  this.xml = user.xml;
 };
 module.exports = User;
 
@@ -11,6 +12,7 @@ User.prototype.save = function save(callback) {
   var user = {
     name: this.name,
     password: this.password,
+    xml:this.xml
   };
   mongodb.open(function(err, db) {
     if (err) {
@@ -28,6 +30,32 @@ User.prototype.save = function save(callback) {
       });
       // write to user
       collection.insert(user, {safe: true}, function(err, user) {
+        mongodb.close();
+        callback(err, user);
+      });
+    });
+  });
+};
+
+User.prototype.update = function update(callback) {
+  // save to mongodb
+  var user = {
+    name: this.name,
+    password: this.password,
+    xml:this.xml
+  };
+  mongodb.open(function(err, db) {
+    if (err) {
+      return callback(err);
+    }
+    // read users collection
+    db.collection('users', function(err, collection) {
+      if (err) {
+        mongodb.close();
+        return callback(err);
+      }
+      // update user
+      collection.update({name: user.name}, {$set: {xml: user.xml}}, {safe: true}, function(err, user) {
         mongodb.close();
         callback(err, user);
       });
@@ -60,3 +88,4 @@ User.get = function get(username, callback) {
     });
   });
 };
+

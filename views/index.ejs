@@ -1,15 +1,26 @@
-<% if (!user) { %>
 <div class="hero-unit">   
 	<h1>Welcome to Timeline Viewer</h1> 
 	<p>Timeline Viewer is Based on Node.js</p>   
 	<p>     
-		<a class="btn btn-primary btn-large" href="/login">Login</a>
-	    <a class="btn btn-large" href="/reg">Register</a> 
+		<% if (!user) { %>
+			<a class="btn btn-primary btn-large" href="/login">Login</a>
+		    <a class="btn btn-large" href="/reg">Register</a> 
+	    <% } else if(user.xml!=null) { %>
+	    	<a><%= allergies %></a>
+	    	<a><%= medications %></a>
+	    	<a><%= demographics %></a>
+	    	<%= immunizations %>
+            <%= labs %>
+            <%= encounters %>
+            <%= medications %>
+            <%= problems %>
+            <%= procedures %>
+            <%= vitals %>
+		<% } else { %> 
+			<a class="btn btn-primary btn-large" href="/upload">Upload New CCDA Document</a>
+		<% } %>
 	 </p> 
 </div> 
-<% } else { %>
-<div>logged in</div>
-<% } %> 
 
 <div class="row">   
 	<div class="span4">    

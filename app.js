@@ -21,6 +21,7 @@ var settings = require('./settings');
 var MongoStore = require('connect-mongo')(express);
 var flash = require('connect-flash');
 
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -28,7 +29,7 @@ app.set('view engine', 'ejs');
 app.use(partials());
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.bodyParser({keepExtensions: true, uploadDir: __dirname + "/public/uploads"}));
 app.use(express.methodOverride());
 app.use(express.cookieParser());   
 app.use(express.session({secret: settings.cookieSecret,store: new MongoStore({db: settings.db})}));  
