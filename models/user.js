@@ -19,24 +19,40 @@ User.prototype.save = function save(callback) {
       return callback(err);
     }
     // read users collection
-    db.collection('users', function(err, collection) {
+      // read users collection
+    db.collection('counters', function(err, collection) {
       if (err) {
         mongodb.close();
         return callback(err);
       }
-      // ensure names to be unique
-      collection.ensureIndex('name', {unique: true},function(err){
-      	callback(err,null);
-      });
       // write to user
-      collection.insert(user, {safe: true}, function(err, user) {
-        mongodb.close();
-        callback(err, user);
+      collection.findAndModify({ _id: 'uid' }, [], { $inc: { seq: 1 } }, {}, function(err, res) {
+        if (res) {
+            db.collection('users', function(err, collection) {
+            if (err) {
+              mongodb.close();
+              return callback(err);
+            }
+            // ensure names to be unique
+            collection.ensureIndex('name', {unique: true},function(err){
+              mongodb.close();
+              callback(err,null);
+            });
+            // write to user
+            user.uid = res.seq;
+            collection.insert(user, {safe: true}, function(err, user) {
+              mongodb.close();
+              callback(err, user);
+            });
+          });
+        } else {      
+          mongodb.close();
+          callback(err, null);
+        }
       });
     });
   });
 };
-
 User.prototype.update = function update(callback) {
   // save to mongodb
   var user = {

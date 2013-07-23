@@ -1,5 +1,5 @@
 <div class="well">
-	<span class="badge"></span>
-	<h3>/h3>
-	<p><%= JSON.stringify(listVital) %></p>
+	<span class="badge"><%= listVital.date%></span>
+	<h3></h3>
+	<%- partial('detailVital' ,listVital.results)%>
 </div>
