@@ -4,6 +4,7 @@ function User(user) {
   this.name = user.name;
   this.password = user.password;
   this.xml = user.xml;
+  this.uid = user.uid;
 };
 module.exports = User;
 
@@ -12,7 +13,8 @@ User.prototype.save = function save(callback) {
   var user = {
     name: this.name,
     password: this.password,
-    xml:this.xml
+    xml:this.xml,
+    user:this.uid
   };
   mongodb.open(function(err, db) {
     if (err) {
@@ -58,7 +60,8 @@ User.prototype.update = function update(callback) {
   var user = {
     name: this.name,
     password: this.password,
-    xml:this.xml
+    xml:this.xml,
+    uid:this.uid
   };
   mongodb.open(function(err, db) {
     if (err) {
