@@ -56,6 +56,7 @@ app.get('/user/:uid',function(req,res){
     title:'TimeLine',
     uid:req.params.uid
   });
+  
   getCCDA(demographicsUrl,req.params.uid,function(demographics){
     displayDemographics(demographics);
   });

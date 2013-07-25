@@ -1,4 +1,8 @@
 (function () {
+  $('#detailPanel').hide();
+  $('#close').click(function(){
+    $('#detailPanel').hide();
+  });
   $('#nav').localScroll(800);
   var $sidebar = $('.sidenav'),
     top = $sidebar.offset().top,
@@ -22,10 +26,6 @@
       }
     });
     $sidebar.find('.current').parents('li').addClass('current');
-  });
-  $('#detailPanel').hide();
-  $('#close').click(function(){
-    $('#detailPanel').hide();
   });
 }());
 

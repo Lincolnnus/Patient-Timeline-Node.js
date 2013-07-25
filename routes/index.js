@@ -1,9 +1,20 @@
 var crypto = require('crypto');
 var User = require('../models/user.js');
 var fs = require('fs')
+  , http = require('http')
   , _ = require('underscore')
   , path = require('path')
   , BlueButton = require(path.join(__dirname, '../node_modules/bluebutton/build/bluebutton'));
+
+var saveDemographicsUrl = 'http://localhost:9099/services/ccda/demographics/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+saveAllergyUrl = 'http://localhost:9099/services/ccda/allergy/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+saveImmunizationUrl = 'http://localhost:9099/services/ccda/immunization/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+saveMedicationUrl = 'http://localhost:9099/services/ccda/medication/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+saveLabUrl = 'http://localhost:9099/services/ccda/lab/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+saveEncounterUrl = 'http://localhost:9099/services/ccda/encounter/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+saveProblemUrl = 'http://localhost:9099/services/ccda/problem/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+saveProcedureUrl ='http://localhost:9099/services/ccda/procedure/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+saveVitalUrl = 'http://localhost:9099/services/ccda/vital/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
@@ -24,8 +35,6 @@ module.exports = function(app) {
             procedures:toJSON(bb.procedures()),
             vitals:toJSON(bb.vitals())
           });
-        /*  var result = new EJS({url: 'demographics.ejs'}).render(demographics);
-          document.getElementById('demographics').innerHTML = result*/
       }else{
           res.render('index', {
             title: 'Home',
@@ -150,7 +159,6 @@ module.exports = function(app) {
         return res.redirect('/login');
       }
       req.session.user = user;
-      console.log(user);
       req.flash('success', 'Successfully Logged In');
       res.redirect('/');
     });
@@ -175,20 +183,68 @@ function uploadToBindaas(uid,xml){
 
     var record = fs.readFileSync(path.resolve(__dirname, '../public/'+xml), 'utf-8');
     var bb = BlueButton(record);
-    var allergies = toJSON(bb.allergies()),
-      demographics = toJSON(bb.demographics()),
-      medications = toJSON(bb.medications()),
-      immunizations = toJSON(bb.immunizations()),
-      labs = toJSON(bb.labs()),
-      encounters = toJSON(bb.encounters()),
-      medications = toJSON(bb.medications()),
-      problems = toJSON(bb.problems()),
-      procedures = toJSON(bb.procedures()),
-      vitals = toJSON(bb.vitals());
-      saveAllergies(uid,allergies);
+    var allergies = bb.allergies(),
+      demographics = bb.demographics(),
+      medications = bb.medications(),
+      immunizations = bb.immunizations(),
+      labs = bb.labs(),
+      encounters =bb.encounters(),
+      medications = bb.medications(),
+      problems = bb.problems(),
+      procedures = bb.procedures(),
+      vitals = bb.vitals();
+      demographics.uid = uid;
+      saveCCDA(saveDemographicsUrl,demographics);
+      for (var i=0;i<allergies.length;i++){
+        allergies[i].uid = uid;
+        saveCCDA(saveAllergyUrl,allergies[i]);
+      }
+      for (var i=0;i<medications.length;i++){
+        medications[i].uid = uid;
+        saveCCDA(saveMedicationUrl,medications[i]);
+      }
+      for (var i=0;i<labs.length;i++){
+        labs[i].uid = uid;
+        saveCCDA(saveLabUrl,labs[i]);
+      }
+      for (var i=0;i<immunizations.length;i++){
+        immunizations[i].uid = uid;
+        saveCCDA(saveImmunizationUrl,immunizations[i]);
+      }
+      for (var i=0;i<procedures.length;i++){
+        procedures[i].uid = uid;
+        saveCCDA(saveProcedureUrl,procedures[i]);
+      }
+      for (var i=0;i<problems.length;i++){
+        problems[i].uid = uid;
+        saveCCDA(saveProblemUrl,problems[i]);
+      }
+      for (var i=0;i<vitals.length;i++){
+        vitals[i].uid = uid;
+        saveCCDA(saveVitalUrl,vitals[i]);
+      }
+      for (var i=0;i<encounters.length;i++){
+        encounters[i].uid = uid;
+        saveCCDA(saveEncounterUrl,encounters[i]);
+      }
 }
-function saveAllergies(uid,allergies){
 
+function saveCCDA(url,data)
+{
+  var request = require('request');
+  var options = {
+    uri: url,
+    method: 'POST',
+    json: data
+  };
+  request(options, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("data successfully added to bindaas"); // Print the shortened url.
+    }else{
+      console.log(error);
+      console.log(response.statusCode);
+    }
+  });
 }
 function checkNotLogin(req, res, next) {
   if (req.session.user) {
