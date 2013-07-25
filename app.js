@@ -21,7 +21,6 @@ var settings = require('./settings');
 var MongoStore = require('connect-mongo')(express);
 var flash = require('connect-flash');
 
-
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -52,7 +51,6 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
-
 app.get('/user/:uid',function(req,res){
   res.render('timeline',{
     title:'TimeLine',
@@ -107,6 +105,15 @@ app.get('/user/:uid/immunizations',function(req,res){
     });
   });
 });
+app.locals.formatDate = function(jsonDate)
+{
+  if(jsonDate == null){
+    return 'Now';
+  }else{
+  var date = new Date(parseInt(jsonDate.substr(6)));
+  return date.toGMTString().substr(5,11);
+  }
+}
 routes(app);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Timeline server listening on port ' + app.get('port'));

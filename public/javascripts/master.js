@@ -23,5 +23,13 @@
     });
     $sidebar.find('.current').parents('li').addClass('current');
   });
-
+  $('#detailPanel').hide();
+  $('#close').click(function(){
+    $('#detailPanel').hide();
+  });
 }());
+
+function showDetail(url){
+  $('#detailPanel').show();
+  $('#detail').attr('src', url);
+}

@@ -24,6 +24,8 @@ module.exports = function(app) {
             procedures:toJSON(bb.procedures()),
             vitals:toJSON(bb.vitals())
           });
+        /*  var result = new EJS({url: 'demographics.ejs'}).render(demographics);
+          document.getElementById('demographics').innerHTML = result*/
       }else{
           res.render('index', {
             title: 'Home',
@@ -69,6 +71,8 @@ module.exports = function(app) {
             req.flash('error', err);
             return res.redirect('/upload');
           }
+          //upload to bindaas api
+          uploadToBindaas(currentUser.uid,currentUser.xml);
           req.session.user = currentUser;
           req.flash('success', 'Successfully Uploaded');
           res.redirect('/');
@@ -146,6 +150,7 @@ module.exports = function(app) {
         return res.redirect('/login');
       }
       req.session.user = user;
+      console.log(user);
       req.flash('success', 'Successfully Logged In');
       res.redirect('/');
     });
@@ -166,7 +171,25 @@ function checkLogin(req, res, next) {
   }
   next();
 }
+function uploadToBindaas(uid,xml){
 
+    var record = fs.readFileSync(path.resolve(__dirname, '../public/'+xml), 'utf-8');
+    var bb = BlueButton(record);
+    var allergies = toJSON(bb.allergies()),
+      demographics = toJSON(bb.demographics()),
+      medications = toJSON(bb.medications()),
+      immunizations = toJSON(bb.immunizations()),
+      labs = toJSON(bb.labs()),
+      encounters = toJSON(bb.encounters()),
+      medications = toJSON(bb.medications()),
+      problems = toJSON(bb.problems()),
+      procedures = toJSON(bb.procedures()),
+      vitals = toJSON(bb.vitals());
+      saveAllergies(uid,allergies);
+}
+function saveAllergies(uid,allergies){
+
+}
 function checkNotLogin(req, res, next) {
   if (req.session.user) {
     req.flash('error', 'Already Logged In');
