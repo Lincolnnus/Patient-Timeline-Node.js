@@ -16,7 +16,26 @@ saveProblemUrl = 'http://localhost:9099/services/ccda/problem/submit/mongo?api_k
 saveProcedureUrl ='http://localhost:9099/services/ccda/procedure/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
 saveVitalUrl = 'http://localhost:9099/services/ccda/vital/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
 
+var demographicsUrl = '/services/ccda/demographics/query/demographics?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+allergyUrl = '/services/ccda/allergy/query/allergy?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+immunizationUrl = '/services/ccda/immunization/query/immunization?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+medicationUrl = '/services/ccda/medication/query/medication?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+labUrl = '/services/ccda/lab/query/lab?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+encounterUrl = '/services/ccda/encounter/query/encounter?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+problemUrl = '/services/ccda/problem/query/problem?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+procedureUrl = '/services/ccda/procedure/query/procedure?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
+vitalUrl = '/services/ccda/vital/query/vital?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+
 module.exports = function(app) {
+  app.locals.formatDate = function(jsonDate)
+  {
+    if(jsonDate == null){
+      return 'Now';
+    }else{
+    var date = new Date(parseInt(jsonDate.substr(6)));
+    return date.toGMTString().substr(5,11);
+    }
+  }
   app.get('/', function(req, res) {
      if ((req.session.user)&&(req.session.user.xml!=null))
      {
@@ -170,6 +189,61 @@ module.exports = function(app) {
     req.flash('success', 'Successfully Logged Out');
     res.redirect('/');
   });
+  app.get('/user',function(req,res){
+  res.render('timeline',{
+    title:'TimeLine',
+    uid:req.session.user.uid
+  });
+  
+  getCCDA(demographicsUrl,req.session.user.uid,function(demographics){
+    displayDemographics(demographics);
+  });
+  getCCDA(allergyUrl,req.session.user.uid,function(allergies){
+    displayAllergies(allergies);
+  });
+  getCCDA(medicationUrl,req.session.user.uid,function(medications){
+    displayMedications(medications);
+  });
+  getCCDA(immunizationUrl,req.session.user.uid,function(immunizations){
+    displayImmunizations(immunizations);
+  });
+});
+  app.get('/demographics',function(req,res){
+    getCCDA(demographicsUrl,req.session.user.uid,function(demographics){
+      displayDemographics(demographics);
+      res.render('demographics',{
+        title:'Demographics',
+        demographics:JSON.parse(demographics)[0]
+      });
+    });
+  });
+  app.get('/allergies',function(req,res){
+    getCCDA(allergyUrl,req.session.user.uid,function(allergies){
+      displayAllergies(allergies);
+      res.render('allergies',{
+        title:'Allergies',
+        allergies:JSON.parse(allergies)
+      });
+    });
+  });
+  app.get('/medications',function(req,res){
+    getCCDA(medicationUrl,req.session.user.uid,function(medications){
+      displayMedications(medications);
+      res.render('medications',{
+        title:'Medications',
+        medications:JSON.parse(medications)
+      });
+    });
+  });
+  app.get('/immunizations',function(req,res){
+    getCCDA(immunizationUrl,req.session.user.uid,function(immunizations){
+      displayImmunizations(immunizations);
+      res.render('immunizations',{
+        title:'Immunizations',
+        immunizations:JSON.parse(immunizations)
+      });
+    });
+  });
 };
 
 function checkLogin(req, res, next) {
@@ -256,4 +330,32 @@ function checkNotLogin(req, res, next) {
 
 function toJSON(target) {
   return JSON.parse(target.json())
+}
+function displayAllergies(allergies){
+}
+function displayMedications(medications){
+}
+function displayDemographics(demographics){
+}
+function displayImmunizations(immunizations){
+}
+function getCCDA(url,uid,callback){
+ var options = {
+    host: 'localhost',
+    path: url+'&uid='+uid,
+    port: '9099'
+}
+var request = http.request(options, function (res) {
+    var data = '';
+    res.on('data', function (chunk) {
+        data += chunk;
+    });
+    res.on('end', function () {
+      callback(data);
+    });
+    });
+    request.on('error', function (e) {
+        console.log(e.message);
+    });
+    request.end();
 }
