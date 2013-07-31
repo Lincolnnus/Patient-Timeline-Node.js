@@ -16,16 +16,6 @@ saveProblemUrl = 'http://localhost:9099/services/ccda/problem/submit/mongo?api_k
 saveProcedureUrl ='http://localhost:9099/services/ccda/procedure/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
 saveVitalUrl = 'http://localhost:9099/services/ccda/vital/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
 
-var demographicsUrl = '/services/ccda/demographics/query/demographics?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-allergyUrl = '/services/ccda/allergy/query/allergy?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-immunizationUrl = '/services/ccda/immunization/query/immunization?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-medicationUrl = '/services/ccda/medication/query/medication?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-labUrl = '/services/ccda/lab/query/lab?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
-encounterUrl = '/services/ccda/encounter/query/encounter?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-problemUrl = '/services/ccda/problem/query/problem?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-procedureUrl = '/services/ccda/procedure/query/procedure?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-vitalUrl = '/services/ccda/vital/query/vital?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
-
 module.exports = function(app) {
   app.locals.formatDate = function(jsonDate)
   {
@@ -154,14 +144,14 @@ module.exports = function(app) {
       });
     });
   });
-  
+  //get login
   app.get('/login', checkNotLogin);
   app.get('/login', function(req, res) {
     res.render('login', {
       title: 'Login',
     });
   });
-
+  //post login
   app.post('/login', checkNotLogin);
   app.post('/login', function(req, res) {
     //generate md5 value
@@ -182,77 +172,76 @@ module.exports = function(app) {
       res.redirect('/');
     });
   });
-  
+  //logout
   app.get('/logout', checkLogin);
   app.get('/logout', function(req, res) {
     req.session.user = null;
     req.flash('success', 'Successfully Logged Out');
     res.redirect('/');
   });
+  app.get('/demographics.json',function(req,res){
+      var demographicsUrl = '/services/ccda/demographics/query/demographics?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(demographicsUrl,req.session.user.uid,function(demographics){
+      res.send(JSON.parse(demographics)[0]);
+    });
+  });
+  app.get('/allergy.json',function(req,res){
+      var  allergyUrl = '/services/ccda/allergy/query/allergy?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(allergyUrl,req.session.user.uid,function(allergies){
+      res.send(JSON.parse(allergies));
+    });
+  });
+  app.get('/immunization.json',function(req,res){
+      var immunizationUrl = '/services/ccda/immunization/query/immunization?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(immunizationUrl,req.session.user.uid,function(immunizations){
+      res.send(JSON.parse(immunizations));
+    });
+  });
+  app.get('/medication.json',function(req,res){
+      var medicationUrl = '/services/ccda/medication/query/medication?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(medicationUrl,req.session.user.uid,function(medications){
+      res.send(JSON.parse(medications));
+    });
+  });
+  app.get('/lab.json',function(req,res){
+      var labUrl = '/services/ccda/lab/query/lab?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(labUrl,req.session.user.uid,function(labs){
+      res.send(JSON.parse(labs));
+    });
+  });
+  app.get('/encounter.json',function(req,res){
+      var encounterUrl = '/services/ccda/encounter/query/encounter?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(encounterUrl,req.session.user.uid,function(encounters){
+      res.send(JSON.parse(encounters));
+    });
+  });
+  app.get('/problem.json',function(req,res){
+      var problemUrl = '/services/ccda/problem/query/problem?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(problemUrl,req.session.user.uid,function(problems){
+      res.send(JSON.parse(problems));
+    });
+  });
+  app.get('/procedure.json',function(req,res){
+      var procedureUrl = '/services/ccda/procedure/query/procedure?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(procedureUrl,req.session.user.uid,function(procedures){
+      res.send(JSON.parse(procedures));
+    });
+  });
+  app.get('/vital.json',function(req,res){
+      var vitalUrl = '/services/ccda/vital/query/vital?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+      getCCDA(vitalUrl,req.session.user.uid,function(vitals){
+      res.send(JSON.parse(vitals));
+    });
+  });
+  //Get the timeline view
   app.get('/timeline',function(req,res){
   res.render('timeline',{
     title:'TimeLine',
     uid:req.session.user.uid
   });
-  
-  getCCDA(demographicsUrl,req.session.user.uid,function(demographics){
-    displayDemographics(demographics);
-  });
-  getCCDA(allergyUrl,req.session.user.uid,function(allergies){
-    displayAllergies(allergies);
-  });
-  getCCDA(medicationUrl,req.session.user.uid,function(medications){
-    displayMedications(medications);
-  });
-  getCCDA(immunizationUrl,req.session.user.uid,function(immunizations){
-    displayImmunizations(immunizations);
-  });
 });
-  app.get('/demographics',function(req,res){
-    getCCDA(demographicsUrl,req.session.user.uid,function(demographics){
-      displayDemographics(demographics);
-      res.render('demographics',{
-        title:'Demographics',
-        demographics:JSON.parse(demographics)[0]
-      });
-    });
-  });
-  app.get('/allergies',function(req,res){
-    getCCDA(allergyUrl,req.session.user.uid,function(allergies){
-      displayAllergies(allergies);
-      res.render('allergies',{
-        title:'Allergies',
-        allergies:JSON.parse(allergies)
-      });
-    });
-  });
-  app.get('/medications',function(req,res){
-    getCCDA(medicationUrl,req.session.user.uid,function(medications){
-      displayMedications(medications);
-      res.render('medications',{
-        title:'Medications',
-        medications:JSON.parse(medications)
-      });
-    });
-  });
-  app.get('/immunizations',function(req,res){
-    getCCDA(immunizationUrl,req.session.user.uid,function(immunizations){
-      displayImmunizations(immunizations);
-      res.render('immunizations',{
-        title:'Immunizations',
-        immunizations:JSON.parse(immunizations)
-      });
-    });
-  });
 };
-
-function checkLogin(req, res, next) {
-  if (!req.session.user) {
-  	req.flash('error', 'Not Logged In');
-    return res.redirect('/login');
-  }
-  next();
-}
+//upload the xml to the bindaas api via the bindaas api using the bluebutton.js
 function uploadToBindaas(uid,xml){
 
     var record = fs.readFileSync(path.resolve(__dirname, '../public/'+xml), 'utf-8');
@@ -302,7 +291,7 @@ function uploadToBindaas(uid,xml){
         saveCCDA(saveEncounterUrl,encounters[i]);
       }
 }
-
+//save the ccda via bindaas post api
 function saveCCDA(url,data)
 {
   var request = require('request');
@@ -320,6 +309,15 @@ function saveCCDA(url,data)
     }
   });
 }
+//Check the user is logged in 
+function checkLogin(req, res, next) {
+  if (!req.session.user) {
+    req.flash('error', 'Not Logged In');
+    return res.redirect('/login');
+  }
+  next();
+}
+//Check the user is not logged in
 function checkNotLogin(req, res, next) {
   if (req.session.user) {
     req.flash('error', 'Already Logged In');
@@ -331,20 +329,14 @@ function checkNotLogin(req, res, next) {
 function toJSON(target) {
   return JSON.parse(target.json())
 }
-function displayAllergies(allergies){
-}
-function displayMedications(medications){
-}
-function displayDemographics(demographics){
-}
-function displayImmunizations(immunizations){
-}
+//This can be done on the backend as well
 function getCCDA(url,uid,callback){
  var options = {
     host: 'localhost',
     path: url+'&uid='+uid,
     port: '9099'
 }
+//Get the bindaas api
 var request = http.request(options, function (res) {
     var data = '';
     res.on('data', function (chunk) {
