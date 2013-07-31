@@ -64,7 +64,7 @@ You should be a valid registered user and logged in to the system in order to up
 
 When you're uploading the xml file, make sure that you have opened up the bindaas server and chosen the right database collection. The bindaas uploading API urls can be found in <code> routes/index.js</code>, please make sure they are all correct. 
 
-**Be sure to make the <code>public/uploads</code> folder readable/writable.**
+**Ensure that the <code>public/uploads</code> folder is readable/writable.**
 
 ---------------------------------
 
@@ -73,20 +73,32 @@ Another very important function for the node server is to get/post data from/to 
 To access the datas, another application interface has been created for the current logged in user.
 
 <code>/demographics.json </code> To get the demographics of the current logged in user
+
 <code>/allergy.json</code> To get the allergies of the current logged in user
+
 <code>/encounter.json</code>
+
 <code>/immunization.json</code>
+
 <code>/lab.json</code>
+
 <code>/medication.json</code>
+
 <code>/problem.json</code>
+
 <code>/procedure.json</code>
+
 <code>/vital.json</code>
 
-** Third Part ** is the web client, which is integrated as the express.js view in this case. However, The web client can also be seperated from the node server. 
+
+-----------------------
+
+**Third Part** is the web client, which is integrated as the express.js view in this case. However, The web client can also be seperated from the node server. 
 
 The web client data is retrieved via ajax through the above APIs. It is accessible via 
 
 <code>/timeline</code>
+
 Once again, you need to ensure that the bindaas server is running and the corresponding database collection is selected.
 You may edit the 
 
@@ -96,10 +108,18 @@ api key and the API urls in the
 
 <code>routes/index.js</code>
 
-To make asyncronize api calls and efficient data updating, we used ajax for commnications between the client and the node server.The codes can be found in <code> public/javascripts/bindaas.js</code> 
+To make asyncronize api calls and efficient data updating, we used ajax for commnications between the client and the node server.The codes can be found in
 
-To make the data updating cleaner, we used a template engine named ejs(embeddedjs) for templating. The templetes can be found in public/templates.
+<code> public/javascripts/bindaas.js</code> 
 
-Besides the ajax timeline view, we also used a simple view which reads the xml file and then render the whole page directly in the views/index.ejs and views/ccda/*
+To make the data updating cleaner, we used a template engine named ejs(embeddedjs) for templating. The templetes can be found in 
 
-For testing purposes, you may use the ccda files in the public/uploads/ folder.
+<code> public/templates.</code>
+
+Besides the ajax timeline view, we also used a simple view which reads the xml file and then render the whole page directly in the 
+
+<code>views/index.ejs and views/ccda/*</code>
+
+For testing purposes, you may use the ccda files in the 
+
+<code>public/uploads/</code> folder.
