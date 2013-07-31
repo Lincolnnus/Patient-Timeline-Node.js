@@ -189,7 +189,7 @@ module.exports = function(app) {
     req.flash('success', 'Successfully Logged Out');
     res.redirect('/');
   });
-  app.get('/user',function(req,res){
+  app.get('/timeline',function(req,res){
   res.render('timeline',{
     title:'TimeLine',
     uid:req.session.user.uid

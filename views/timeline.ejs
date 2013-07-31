@@ -1,16 +1,26 @@
-<div id="demographics">
-<a href="/user/<%= uid %>/demographics">Demographics</a>
-Demographics goes here
-</div>
-<div id="allergies">
-<a href="/user/<%= uid %>/allergies">Allergies</a>
-Allergies goes here
-</div>
-<div id="immunizations">
-<a href="/user/<%= uid %>/immunizations">Immunizations</a>
-Immunizations go here
-</div>
-<div id="medications">
-<a href="/user/<%= uid %>/medications">Medications</a>
-Medications go here
-</div>
+ 	<% if (!user) { %>
+ 	<div class="hero-unit">  
+	<h1>Welcome to Timeline Viewer</h1> 
+	<p>Timeline Viewer is Based on Node.js</p>   
+	<p>  
+		<a class="btn btn-primary btn-large" href="/login">Login</a>
+	    <a class="btn btn-large" href="/reg">Register</a> 
+	</p> 
+	</div> 
+    <% } else if(user.xml!=null) { %>
+    <div class="row-fluid">
+		 <div class="span3">
+			<nav>
+			  <ol class="sidenav fixed" id="nav">
+			    <li>
+			      <a href="#vitalList">Vitals</a>
+			    </li>
+			   </ol>
+			</nav>
+		</div>
+		<div class="span9">
+		</div>
+	</div>
+	<% } else { %> 
+		<a class="btn btn-primary btn-large" href="/upload">Upload New CCDA Document</a>
+	<% } %>
