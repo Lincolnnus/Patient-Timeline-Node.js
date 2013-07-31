@@ -1,0 +1,28 @@
+ <div class="hero-unit">  
+    <h1 class="family"><%= demographics.name.family %> 
+      <%= demographics.name.given %></h1> 
+    <p class="dob">Date of Birth:<%= demographics.dob.substr(0,10) %></p> 
+      <p class="gender">
+        <% if (demographics.gender == "Male") {%>
+          <img src="/images/male.jpg" width="100px">
+        <%} else {%>
+          <img src="/images/female.jpg" width="100px">
+        <%}%>
+      </p>
+      <p class="marital">Marital Status:<%= demographics.marital_status %></p>
+  </div> 
+  <div class="row">
+      <div class="address span4">
+        <h2> <%= demographics.address.street %></h2>
+        <p> <%= demographics.address.city %>,<%= demographics.address.state %>,<%= demographics.address.country %>.</p>
+        <p><%= demographics.address.zip %></p>
+        <p class="phoneHome"><%= demographics.phone.home %></p>
+     
+      </div>
+      <div class="span4">
+        <h2>Other Information</h2>
+        <p class="race"><%= demographics.race %></p>
+        <p class="ethnicity"><%= demographics.ethnicity %></p>
+        <p class="religion"><%= demographics.religion %></p>
+      </div>
+  </div>

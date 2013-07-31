@@ -1,0 +1,10 @@
+<% for (var i=0;i<allergies.length;i++){%>
+<div class="well">
+  <span class="badge"><%= formatDate(allergies[i].date_range.start)%>-<%= formatDate(allergies[i].date_range.end)%></span>
+  <h3><%= allergies[i].code %></h3>
+  <p><%= allergies[i].severity %></p>
+  <p>Reaction:<a onclick="showDetail('http://bioportal.bioontology.org/ontologies/46896?p=terms&conceptid=<%= allergies[i].reaction.code %>')"> <%= allergies[i].reaction.name%></a></p>
+  <p>Reaction Type:<a onclick="showDetail('http://bioportal.bioontology.org/ontologies/46896?p=terms&conceptid=<%= allergies[i].reaction_type.code %>')"><%= allergies[i].reaction_type.name %></a></p>
+  <p>Allergen: <a onclick="showDetail('http://bioportal.bioontology.org/ontologies/49463/?p=terms&conceptid=<%= allergies[i].allergen.code %>')"> <%= allergies[i].allergen.name %></a></p>
+</div>
+<%}%>

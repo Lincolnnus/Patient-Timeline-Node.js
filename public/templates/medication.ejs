@@ -1,0 +1,12 @@
+<% for (i=0;i<medications.length;i++){%>
+<div class="well">
+<span class="badge">
+<%= formatDate(medications.date_range.start) %>-<%= formatDate(medications.date_range.end) %>
+</span>
+<h3>
+<%= medications.product.name %>
+</h3>
+  <p><a onclick="showDetail('http://bioportal.bioontology.org/ontologies/1032?p=terms&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23<%= medications.route.code %>')"><%= medications.route.name %></a></p>
+  <p><a onclick="showDetail('http://bioportal.bioontology.org/ontologies/1032?p=terms&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23<%= medications.administration.code %>')"><%= medications.administration.name %></a></p>
+</div>
+<% } %>

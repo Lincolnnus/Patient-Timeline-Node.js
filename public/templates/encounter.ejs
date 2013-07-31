@@ -1,0 +1,8 @@
+<% for (i=0;i<encounters.length;i++){%>
+<div class="well">
+	<span class="badge"><%= formatDate(encounters[i].date)%></span>
+	<h3><%= encounters[i].name%></h3>
+	<p><%= encounters[i].code%></p>
+	<p><%=encounters[i].code_system_name%></p>
+</div>
+<%}%>

@@ -1,31 +1,31 @@
 var api_key= "5d36e104-bdfe-4ec1-975c-728154aa90f9";
 function showTimeline(){
     getCCDA('/demographics.json',function(demographics){
-      console.log(demographics);
+      new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
     });
     getCCDA('/allergy.json',function(allergies){
-      console.log(allergies);
+        new EJS({url: '../templates/allergy.ejs'}).update('allergies', {allergies: allergies});
     });
     getCCDA('/problem.json',function(problems){
-      console.log(problems);
+        new EJS({url: '../templates/problem.ejs'}).update('problems', {problems: problems});
     });
     getCCDA('/procedure.json',function(procedures){
-      console.log(procedures);
+        new EJS({url: '../templates/procedure.ejs'}).update('procedures', {procedures: procedures});
     });
     getCCDA('/immunization.json',function(immunizations){
-      console.log(immunizations);
+        new EJS({url: '../templates/immunization.ejs'}).update('immunizations', {immunizations: immunizations});
     });
     getCCDA('/medication.json',function(medications){
-      console.log(medications);
+        new EJS({url: '../templates/medication.ejs'}).update('medications', {medications: medications});
     });
     getCCDA('/lab.json',function(labs){
-      console.log(labs);
+        new EJS({url: '../templates/lab.ejs'}).update('labs', {labs: labs});
     });
     getCCDA('/encounter.json',function(encounters){
-      console.log(encounters);
+        new EJS({url: '../templates/encounter.ejs'}).update('encounters', {encounters: encounters});
     });
     getCCDA('/vital.json',function(vitals){
-      console.log(vitals);
+        new EJS({url: '../templates/vital.ejs'}).update('vitals', {vitals: vitals});
     });
 }
 
@@ -35,6 +35,15 @@ function getCCDA(url,callback){
         url: url,
         contentType: "application/json",
     }).done(function(data) {
-      console.log(data);
+      callback(data);
     });
+}
+function formatDate(jsonDate)
+{
+  if(jsonDate == null){
+    return 'Now';
+  }else{
+  var date = new Date(parseInt(jsonDate.substr(6)));
+  return date.toGMTString().substr(5,11);
+  }
 }

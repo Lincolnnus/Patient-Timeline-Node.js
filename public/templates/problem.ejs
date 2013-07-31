@@ -1,0 +1,6 @@
+<% for (i=0;i<problems.length;i++){%>
+<div class="well">
+  <span class="badge"><%= formatDate(problems[i].date_range.start)%>-<%= formatDate(problems[i].date_range.end)%></span>
+  <h3><a onclick="showDetail('http://bioportal.bioontology.org/ontologies/1353?p=terms&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F<%= problems[i].code %>')"><%= problems[i].name %></a></h3>
+</div>
+<% } %>
