@@ -187,7 +187,7 @@ module.exports = function(app) {
   app.get('/timeline/logout', function(req, res) {
     req.session.user = null;
     req.flash('success', 'Successfully Logged Out');
-    res.redirect('/');
+    res.redirect('/timeline');
   });
   app.get('/timeline/demographics.json',function(req,res){
       getCCDA(demographicsUrl,req.session.user.uid,function(demographics){
