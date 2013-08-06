@@ -18,6 +18,10 @@ The whole system consists of three parts:
 
 To make an auto-increment user id field, another mongodb collection named counters should be created in your database before further configuration.
 
+You need to start mongodb
+<code>mongod</code>to start mongo db
+<code>mongo</code> to start the mongo shell
+<code>use ccda</code> to select the corresponding database configured in <code>settings.js</code>
 <code>
 db.counters.insert(
    {
@@ -59,12 +63,22 @@ And you should be accessible to the node server via http://localhost:3000. You c
 
 <code> app.js </code>
 
+
+To adapt to the apache proxy server in Emory University, all the urls are prefixed with /timeline, for instance, the home page is <code>http://localhost:3000/timeline</code> instead of <code>http://localhost:3000</code>
+
 One major function for the node server is to upload the ccda xml documents.
 You should be a valid registered user and logged in to the system in order to upload the ccda xml files.
 
 When you're uploading the xml file, make sure that you have opened up the bindaas server and chosen the right database collection. The bindaas uploading API urls can be found in <code> routes/index.js</code>, please make sure they are all correct. 
 
+If you don't have the bindaas api ready, please comment out the following line in <code>routes/index.js</code>
+
+<code>uploadToBindaas(currentUser.uid,currentUser.xml);</code>
+
+
 **Ensure that the <code>public/uploads</code> folder is readable/writable.**
+
+
 
 ---------------------------------
 
@@ -72,23 +86,25 @@ Another very important function for the node server is to get/post data from/to 
 
 To access the datas, another application interface has been created for the current logged in user.
 
-<code>/demographics.json </code> To get the demographics of the current logged in user
+```
+/timeline/demographics.json To get the demographics of the current logged in user
 
-<code>/allergy.json</code> To get the allergies of the current logged in user
+/timeline/allergy.json To get the allergies of the current logged in user
 
-<code>/encounter.json</code>
+/timeline/encounter.json
 
-<code>/immunization.json</code>
+/timeline/immunization.json
 
-<code>/lab.json</code>
+/timeline/lab.json
 
-<code>/medication.json</code>
+/timeline/medication.json
 
-<code>/problem.json</code>
+/timeline/problem.json
 
-<code>/procedure.json</code>
+/timeline/procedure.json
 
-<code>/vital.json</code>
+/timeline/vital.json
+```
 
 
 -----------------------
@@ -97,7 +113,7 @@ To access the datas, another application interface has been created for the curr
 
 The web client data is retrieved via ajax through the above APIs. It is accessible via 
 
-<code>/timeline</code>
+<code>/timeline/timeline</code>
 
 Once again, you need to ensure that the bindaas server is running and the corresponding database collection is selected.
 You may edit the 
@@ -107,6 +123,8 @@ You may edit the
 api key and the API urls in the 
 
 <code>routes/index.js</code>
+
+---------------------
 
 To make asyncronize api calls and efficient data updating, we used ajax for commnications between the client and the node server.The codes can be found in
 

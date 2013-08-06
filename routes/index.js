@@ -36,7 +36,7 @@ module.exports = function(app) {
     return date.toGMTString().substr(5,11);
     }
   }
-  app.get('/', function(req, res) {
+  app.get('/timeline', function(req, res) {
      if ((req.session.user)&&(req.session.user.xml!=null))
      {
           var record = fs.readFileSync(path.resolve(__dirname, '../public/'+req.session.user.xml), 'utf-8');
@@ -71,20 +71,20 @@ module.exports = function(app) {
       }
   });
   
-  app.get('/reg', checkNotLogin);
-  app.get('/reg', function(req, res) {
+  app.get('/timeline/reg', checkNotLogin);
+  app.get('/timeline/reg', function(req, res) {
     res.render('reg', {
       title: 'Register',
     });
   });
-  app.get('/upload',checkLogin);
-  app.get('/upload',function(req,res){
+  app.get('/timeline/upload',checkLogin);
+  app.get('/timeline/upload',function(req,res){
     res.render('upload',{
       title:'Upload',
     });
   });
-  app.post('/upload',checkLogin);
-  app.post('/upload',function(req,res){
+  app.post('/timeline/upload',checkLogin);
+  app.post('/timeline/upload',function(req,res){
      if (req.files) {
         req.body.url = "http://localhost:3000/" + req.files.ccda.path.split("/").slice(-2).join("/")
         req.body.path = req.files.ccda.path.split("/").slice(-2).join("/")
@@ -97,32 +97,32 @@ module.exports = function(app) {
         currentUser.update(function(err) {
           if (err) {
             req.flash('error', err);
-            return res.redirect('/upload');
+            return res.redirect('/timeline/upload');
           }
           //upload to bindaas api
           uploadToBindaas(currentUser.uid,currentUser.xml);
           req.session.user = currentUser;
           req.flash('success', 'Successfully Uploaded');
-          res.redirect('/');
+          res.redirect('/timeline');
         });
       });
   });
-  app.post('/reg', checkNotLogin);
-  app.post('/reg', function(req, res) {
+  app.post('/timeline/reg', checkNotLogin);
+  app.post('/timeline/reg', function(req, res) {
     //username must be longer than 0 chars
     if (req.body.username.length < 1) {
       req.flash('error', 'Please Enter A Valid User Name');
-      return res.redirect('/reg');
+      return res.redirect('/timeline/reg');
     }
     //password must be longer than 3 chars
     if (req.body.password.length < 3){
       req.flash('error', 'Passwords Must Be Longer Than 2 Chars');
-      return res.redirect('/reg');
+      return res.redirect('/timeline/reg');
     }
     //passwords don't match
     if (req.body['password-repeat'] != req.body['password']) {
       req.flash('error', 'Passwords don\'t match');
-      return res.redirect('/reg');
+      return res.redirect('/timeline/reg');
     }
     //get the md5 value of the password
     var md5 = crypto.createHash('md5');
@@ -140,30 +140,30 @@ module.exports = function(app) {
         err = 'Username already exists.';
       if (err) {
       	req.flash('error', err);
-        return res.redirect('/reg');
+        return res.redirect('/timeline/reg');
       }
       //add new user
       newUser.save(function(err) {
         if (err) {
           req.flash('error', err);
-          return res.redirect('/reg');
+          return res.redirect('/timeline/reg');
         }
         req.session.user = newUser;
         req.flash('success', 'Successfully Registered');
-        res.redirect('/');
+        res.redirect('/timeline');
       });
     });
   });
   //get login
-  app.get('/login', checkNotLogin);
-  app.get('/login', function(req, res) {
+  app.get('/timeline/login', checkNotLogin);
+  app.get('/timeline/login', function(req, res) {
     res.render('login', {
       title: 'Login',
     });
   });
   //post login
-  app.post('/login', checkNotLogin);
-  app.post('/login', function(req, res) {
+  app.post('/timeline/login', checkNotLogin);
+  app.post('/timeline/login', function(req, res) {
     //generate md5 value
     var md5 = crypto.createHash('md5');
     var password = md5.update(req.body.password).digest('base64');
@@ -171,71 +171,71 @@ module.exports = function(app) {
     User.get(req.body.username, function(err, user) {
       if (!user) {
     	req.flash('error', 'No Such User');
-      	return res.redirect('/login');
+      	return res.redirect('/timeline/login');
       }
       if (user.password != password) {
     	req.flash('error', 'Wrong Password');
-        return res.redirect('/login');
+        return res.redirect('/timeline/login');
       }
       req.session.user = user;
       req.flash('success', 'Successfully Logged In');
-      res.redirect('/');
+      res.redirect('/timeline');
     });
   });
   //logout
-  app.get('/logout', checkLogin);
-  app.get('/logout', function(req, res) {
+  app.get('/timeline/logout', checkLogin);
+  app.get('/timeline/logout', function(req, res) {
     req.session.user = null;
     req.flash('success', 'Successfully Logged Out');
     res.redirect('/');
   });
-  app.get('/demographics.json',function(req,res){
+  app.get('/timeline/demographics.json',function(req,res){
       getCCDA(demographicsUrl,req.session.user.uid,function(demographics){
       res.send(JSON.parse(demographics)[0]);
     });
   });
-  app.get('/allergy.json',function(req,res){
+  app.get('/timeline/allergy.json',function(req,res){
       getCCDA(allergyUrl,req.session.user.uid,function(allergies){
       res.send(JSON.parse(allergies));
     });
   });
-  app.get('/immunization.json',function(req,res){
+  app.get('/timeline/immunization.json',function(req,res){
       getCCDA(immunizationUrl,req.session.user.uid,function(immunizations){
       res.send(JSON.parse(immunizations));
     });
   });
-  app.get('/medication.json',function(req,res){
+  app.get('/timeline/medication.json',function(req,res){
       getCCDA(medicationUrl,req.session.user.uid,function(medications){
       res.send(JSON.parse(medications));
     });
   });
-  app.get('/lab.json',function(req,res){
+  app.get('/timeline/lab.json',function(req,res){
       getCCDA(labUrl,req.session.user.uid,function(labs){
       res.send(JSON.parse(labs));
     });
   });
-  app.get('/encounter.json',function(req,res){
+  app.get('/timeline/encounter.json',function(req,res){
       getCCDA(encounterUrl,req.session.user.uid,function(encounters){
       res.send(JSON.parse(encounters));
     });
   });
-  app.get('/problem.json',function(req,res){
+  app.get('/timeline/problem.json',function(req,res){
       getCCDA(problemUrl,req.session.user.uid,function(problems){
       res.send(JSON.parse(problems));
     });
   });
-  app.get('/procedure.json',function(req,res){
+  app.get('/timeline/procedure.json',function(req,res){
       getCCDA(procedureUrl,req.session.user.uid,function(procedures){
       res.send(JSON.parse(procedures));
     });
   });
-  app.get('/vital.json',function(req,res){
+  app.get('/timeline/vital.json',function(req,res){
       getCCDA(vitalUrl,req.session.user.uid,function(vitals){
       res.send(JSON.parse(vitals));
     });
   });
   //Get the timeline view
-  app.get('/timeline',function(req,res){
+  app.get('/timeline/timeline',function(req,res){
   res.render('timeline',{
     title:'TimeLine',
     uid:req.session.user.uid
@@ -314,7 +314,7 @@ function saveCCDA(url,data)
 function checkLogin(req, res, next) {
   if (!req.session.user) {
     req.flash('error', 'Not Logged In');
-    return res.redirect('/login');
+    return res.redirect('/timeline/login');
   }
   next();
 }
@@ -322,7 +322,7 @@ function checkLogin(req, res, next) {
 function checkNotLogin(req, res, next) {
   if (req.session.user) {
     req.flash('error', 'Already Logged In');
-    return res.redirect('/');
+    return res.redirect('/timeline');
   }
   next();
 }
