@@ -19,14 +19,14 @@
 			      <a class="brand" href="/">GSOC Timeline</a>
 			      <div class="nav-collapse">
 					 <ul class="nav">
-		              <li class="active"><a href="/">Home</a></li>
+		              <li class="active"><a href="/timeline">Home</a></li>
 		              <% if (!user) { %>
-		                <li><a href="/login">Login</a></li>
-		                <li><a href="/reg">Register</a></li>
+		                <li><a href="/timeline/login">Login</a></li>
+		                <li><a href="/timeline/reg">Register</a></li>
 		              <% } else { %>
-		                <li><a href="/timeline">Timeline View</a></li>
-		                <li><a href="/upload">Upload CCDA</a></li>
-		                <li><a href="/logout">Logout</a></li>
+		                <li><a href="/timeline/timeline">Timeline View</a></li>
+		                <li><a href="/timeline/upload">Upload CCDA</a></li>
+		                <li><a href="/timeline/logout">Logout</a></li>
 		              <% } %>
 		            </ul>
 			    </div>
