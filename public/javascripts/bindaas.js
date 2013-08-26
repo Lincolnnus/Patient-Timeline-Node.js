@@ -1,30 +1,30 @@
 var api_key= "5d36e104-bdfe-4ec1-975c-728154aa90f9";
 function showTimeline(){
-    getCCDA('/demographics.json',function(demographics){
+    getCCDA('/timeline/demographics.json',function(demographics){
       new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
     });
-    getCCDA('/allergy.json',function(allergies){
+    getCCDA('/timeline/allergy.json',function(allergies){
         new EJS({url: '../templates/allergy.ejs'}).update('allergies', {allergies: allergies});
     });
-    getCCDA('/problem.json',function(problems){
+    getCCDA('/timeline/problem.json',function(problems){
         new EJS({url: '../templates/problem.ejs'}).update('problems', {problems: problems});
     });
-    getCCDA('/procedure.json',function(procedures){
+    getCCDA('/timeline/procedure.json',function(procedures){
         new EJS({url: '../templates/procedure.ejs'}).update('procedures', {procedures: procedures});
     });
-    getCCDA('/immunization.json',function(immunizations){
+    getCCDA('/timeline/immunization.json',function(immunizations){
         new EJS({url: '../templates/immunization.ejs'}).update('immunizations', {immunizations: immunizations});
     });
-    getCCDA('/medication.json',function(medications){
+    getCCDA('/timeline/medication.json',function(medications){
         new EJS({url: '../templates/medication.ejs'}).update('medications', {medications: medications});
     });
-    getCCDA('/lab.json',function(labs){
+    getCCDA('/timeline/lab.json',function(labs){
         new EJS({url: '../templates/lab.ejs'}).update('labs', {labs: labs});
     });
-    getCCDA('/encounter.json',function(encounters){
+    getCCDA('/timeline/encounter.json',function(encounters){
         new EJS({url: '../templates/encounter.ejs'}).update('encounters', {encounters: encounters});
     });
-    getCCDA('/vital.json',function(vitals){
+    getCCDA('/timeline/vital.json',function(vitals){
         new EJS({url: '../templates/vital.ejs'}).update('vitals', {vitals: vitals});
     });
 }
