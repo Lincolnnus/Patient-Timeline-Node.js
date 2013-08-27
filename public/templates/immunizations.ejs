@@ -1,0 +1,14 @@
+<h3><i class="icon-immunization"></i>Immunizations</h3>
+<hr>
+<% for (i=0;i<immunizations.length;i++){%>
+<div class="row detail">
+	<div class="col-xs-3 right">
+		<span class="date date-immunization"><%= formatDate(immunizations[i].date)%></span>
+ 	   <p>Name:<%= immunizations[i].product.name %></p>
+	</div>
+	<div class="col-xs-9">
+		<strong><%= immunizations[i].product.name %></strong>
+		<p><a onclick="showMore('http://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx')">References</a></p>
+	</div>
+</div>
+<% }%>

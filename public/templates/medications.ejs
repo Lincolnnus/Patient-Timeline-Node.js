@@ -1,0 +1,14 @@
+<h3><i class="icon-medication"></i>Medications</h3>
+<hr>
+<% for (i=0;i<medications.length;i++){%>
+<div class="row detail" id="medications">
+	<div class="col-xs-3 right">
+		<span class="date date-medication"><%= formatDate(medications[i].date_range.start) %></span>
+	    <p><a onclick="showMore('http://bioportal.bioontology.org/ontologies/1032?p=terms&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23<%= medications[i].route.code %>')"><%= medications[i].route.name %></a></p>
+	</div>
+	<div class="col-xs-9">
+		<strong><%= medications[i].product.name %></strong>
+  		<p><a onclick="showMore('http://bioportal.bioontology.org/ontologies/1032?p=terms&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23<%= medications[i].administration.code %>')"><%= medications[i].administration.name %></a></p>
+	</div>
+</div>
+<% } %>

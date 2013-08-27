@@ -1,0 +1,12 @@
+<h3><i class="icon-encounter"></i>Encounters</h3>
+<hr>
+<% for (i=0;i<encounters.length;i++){%>
+<div class="row detail" id="encounters">
+	<div class="col-xs-3 right">
+		<span class="date date-encounter"><%= formatDate(encounters[i].date)%></span>
+	</div>
+	<div class="col-xs-9">
+		<strong><%= encounters[i].name%></strong>
+	</div>
+</div>
+<%}%>

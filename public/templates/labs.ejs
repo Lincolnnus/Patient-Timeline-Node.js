@@ -1,0 +1,5 @@
+<% for (i=0;i<labs.length;i++){%>
+<div class="well">
+	<h3><a onclick="showMore('http://bioportal.bioontology.org/ontologies/1350?p=terms&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FLOINC%2F<%= labs[i].code %>')"><%= labs[i].name %></a></h3>
+</div>
+<%}%>

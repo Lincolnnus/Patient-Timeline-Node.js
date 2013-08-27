@@ -1,0 +1,12 @@
+<h3><i class="icon-procedure"></i>Procedures</h3>
+<hr>
+<% for (i=0;i<procedures.length;i++) {%>
+<div class="row detail">
+	<div class="col-xs-3 right">
+		<span class="date date-procedure"><%= formatDate(procedures[i].date)%></span>
+	</div>
+	<div class="col-xs-9">
+		<strong><%= procedures[i].name %></strong>
+	</div>
+</div>
+<% } %>

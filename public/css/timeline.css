@@ -1,0 +1,60 @@
+.gray{
+	color:gray;
+}
+.dashed{
+	border:1px #cccccc dashed;
+}
+.right{
+	text-align: right;
+}
+.label-corner{
+	position: relative;
+	left:48%;
+	top:-30px;
+}
+.timeline{
+	background-image: url("../img/timeline.png");
+	background-repeat:repeat-y;
+	background-position:center; 
+}
+.right blockquote{
+  border-right: 5px solid #eeeeee;
+}
+
+.left blockquote{
+  border-left: 5px solid #eeeeee;
+}
+.detail{
+	padding-bottom: 10px;
+}
+.date {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 120%;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.date-plan{
+	background-color: #C0C0C0;
+}
+.date-encounter{
+	background-color: #00CCFF;
+}
+.date-problem{
+	background-color: #FFCC66;
+}
+.date-procedure{
+	background-color: #33CC66;
+}
+.date-immunization{
+	background-color: #9966CC;
+}
+.date-medication{
+	background-color: #3366CC;
+}

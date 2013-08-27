@@ -1,0 +1,12 @@
+<h3><i class="icon-problem"></i>Problem List</h3>
+<hr>
+<% for (i=0;i<problems.length;i++){%>
+<div class="row detail">
+	<div class="col-xs-3 right">
+		<span class="date date-problem"><%= formatDate(problems[i].date_range.start)%></span>
+	</div>
+	<div class="col-xs-9">
+		<strong><a onclick="showMore('http://bioportal.bioontology.org/ontologies/1353?p=terms&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F<%= problems[i].code %>')"><%= problems[i].name %></a></strong>
+	</div>
+</div>
+<% } %>
