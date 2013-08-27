@@ -1,63 +1,97 @@
 <!DOCTYPE html>
 <html>
-￼￼<head>
-	<title><%= title %></title>
-	<link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-	<link href="/stylesheets/bootstrap-responsive.css" rel="stylesheet"/>
-	<link rel='stylesheet' href='/stylesheets/style.css' />
-	<link rel="stylesheet" href="/stylesheets/swig.css" />
-￼ </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/ico/favicon.ico">
+
+    <title>GSOC 2013 Timeline Viewer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <link href="css/bootstrap-ie7.css" rel="stylesheet">
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    	.gray{
+    		color:gray;
+    	}
+    	.dashed{
+			border:1px #cccccc dashed;
+    	}
+    	.right{
+    		text-align: right;
+    	}
+    	.label-corner{
+    		position: relative;
+    		left:48%;
+    		top:-30px;
+    	}
+    	.timeline{
+    		background-image: url("img/timeline.png");
+			background-repeat:repeat-y;
+			background-position:center; 
+    	}
+		.right blockquote{
+		  border-right: 5px solid #eeeeee;
+		}
+
+		.left blockquote{
+		  border-left: 5px solid #eeeeee;
+		}
+    </style>
+  </head>
   <body>
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </a>
-			      <a class="brand" href="/">GSOC Timeline</a>
-			      <div class="nav-collapse">
-					 <ul class="nav">
-		              <li class="active"><a href="/timeline">Home</a></li>
-		              <% if (!user) { %>
-		                <li><a href="/timeline/login">Login</a></li>
-		                <li><a href="/timeline/reg">Register</a></li>
-		              <% } else { %>
-		                <li><a href="/timeline/timeline">Timeline View</a></li>
-		                <li><a href="/timeline/upload">Upload CCDA</a></li>
-		                <li><a href="/timeline/logout">Logout</a></li>
-		              <% } %>
-		            </ul>
-			    </div>
-		 	</div>
-		</div>
-	</div>
-	<div id="container" class="container">
-		<% if (success && success.length ) { %>
-		    <div class="alert alert-success">
-		        <a class="close" data-dismiss="alert" href="#">×</a>
-		        <strong><%= success %></strong>
-		    </div>
+  	<div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/timeline">Timeline Viewer</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/timeline/detail">Detail</a></li>
+            <li><a href="/timeline/labs">Labs</a></li>
+            <% if (!user) { %>
+	           <li><a href="/timeline/login">Login</a></li>
+	           <li><a href="/timeline/reg">Register</a></li>
+	        <% } else { %>
+	           <li><a href="/timeline/upload">Upload CCDA</a></li>
+	           <li><a href="/timeline/logout">Logout</a></li>
+	        <% } %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li class="active"><a href="login.html">Login</a></li> -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+        <% if (success && success.length ) { %>
+	        <div class="alert alert-success">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong>Well done!</strong><%= success %>
+			</div>
 		<% } %>
 		<% if (error && error.length ) { %>
-		    <div class="alert alert-error">
-		        <a class="close" data-dismiss="alert" href="#">×</a>
-		        <strong><%= error %></strong>
-		    </div>
+		    <div class="alert alert-warning">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong>Warning!</strong><%= error %>
+			</div>
 		<% } %>
 	    <%- body %>
-	    <hr />
-	    <footer><p><a href="" target="_blank">Shao</a> 2013</p> </footer>
 	</div>
-	<div id="detailPanel">
-		<a id="close">Close</a>
-		<iframe id="detail" href=""></iframe>
-	</div>
-	<script src="/javascripts/jquery.min.js"></script>
-    <script src="/javascripts/bootstrap.js"></script>
-    <script src="/javascripts/jquery.scrollTo.min.js"></script>
-    <script src="/javascripts/jquery.localscroll.min.js"></script>
-    <script src="/javascripts/master.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
