@@ -1,3 +1,7 @@
+var api_key="105bf231-a566-4350-8a70-b555f5eb7832";
+var api_domain= "localhost";
+var api_port = "9099";
+
 var crypto = require('crypto');
 var User = require('../models/user.js');
 var fs = require('fs')
@@ -6,25 +10,25 @@ var fs = require('fs')
   , path = require('path')
   , BlueButton = require(path.join(__dirname, '../node_modules/bluebutton/build/bluebutton'));
 
-var saveDemographicsUrl = 'http://localhost:9099/services/ccda/demographics/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-saveAllergyUrl = 'http://localhost:9099/services/ccda/allergy/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-saveImmunizationUrl = 'http://localhost:9099/services/ccda/immunization/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-saveMedicationUrl = 'http://localhost:9099/services/ccda/medication/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-saveLabUrl = 'http://localhost:9099/services/ccda/lab/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
-saveEncounterUrl = 'http://localhost:9099/services/ccda/encounter/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
-saveProblemUrl = 'http://localhost:9099/services/ccda/problem/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
-saveProcedureUrl ='http://localhost:9099/services/ccda/procedure/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
-saveVitalUrl = 'http://localhost:9099/services/ccda/vital/submit/mongo?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+var saveDemographicsUrl = '/services/ccda/demographics/submit/json',
+saveAllergyUrl = '/services/ccda/allergy/submit/json',
+saveImmunizationUrl = '/services/ccda/immunization/submit/json',
+saveMedicationUrl = '/services/ccda/medication/submit/json',
+saveLabUrl = '/services/ccda/lab/submit/json',
+saveEncounterUrl = '/services/ccda/encounter/submit/json',
+saveProblemUrl = '/services/ccda/problem/submit/json',
+saveProcedureUrl ='/services/ccda/procedure/submit/json',
+saveVitalUrl = '/services/ccda/vital/submit/json';
 
-var demographicsUrl = '/services/ccda/demographics/query/demographics?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-problemUrl = '/services/ccda/problem/query/problem?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-allergyUrl = '/services/ccda/allergy/query/allergy?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-immunizationUrl = '/services/ccda/immunization/query/immunization?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-medicationUrl = '/services/ccda/medication/query/medication?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-labUrl = '/services/ccda/lab/query/lab?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-encounterUrl = '/services/ccda/encounter/query/encounter?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-procedureUrl = '/services/ccda/procedure/query/procedure?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9',
-vitalUrl = '/services/ccda/vital/query/vital?api_key=5d36e104-bdfe-4ec1-975c-728154aa90f9';
+var demographicsUrl = '/services/ccda/demographics/query/demographics',
+problemUrl = '/services/ccda/problem/query/problem',
+allergyUrl = '/services/ccda/allergy/query/allergy',
+immunizationUrl = '/services/ccda/immunization/query/immunization',
+medicationUrl = '/services/ccda/medication/query/medication',
+labUrl = '/services/ccda/lab/query/lab',
+encounterUrl = '/services/ccda/encounter/query/encounter',
+procedureUrl = '/services/ccda/procedure/query/procedure',
+vitalUrl = '/services/ccda/vital/query/vital';
 
 module.exports = function(app) {
   app.locals.formatDate = function(jsonDate)
@@ -86,7 +90,6 @@ module.exports = function(app) {
   app.post('/timeline/upload',checkLogin);
   app.post('/timeline/upload',function(req,res){
      if (req.files) {
-        req.body.url = "http://localhost:3000/" + req.files.ccda.path.split("/").slice(-2).join("/")
         req.body.path = req.files.ccda.path.split("/").slice(-2).join("/")
       }
       var currentUser = new User(req.session.user);
@@ -297,7 +300,7 @@ function saveCCDA(url,data)
 {
   var request = require('request');
   var options = {
-    uri: url,
+    uri: 'http://'+api_domain+':'+api_port+url+'?api_key='+api_key,
     method: 'POST',
     json: data
   };
@@ -333,9 +336,9 @@ function toJSON(target) {
 //This can be done on the backend as well
 function getCCDA(url,uid,callback){
  var options = {
-    host: 'localhost',
-    path: url+'&uid='+uid,
-    port: '9099'
+    host: api_domain,
+    path: url+'?api_key='+api_key+'&uid='+uid,
+    port: api_port
 }
 //Get the bindaas api
 var request = http.request(options, function (res) {
