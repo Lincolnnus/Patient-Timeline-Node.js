@@ -1,28 +1,30 @@
- <div class="hero-unit">  
-    <h1 class="family"><%= demographics.name.family %> 
-      <%= demographics.name.given %></h1> 
-    <p class="dob">Date of Birth:<%= demographics.dob.substr(0,10) %></p> 
-      <p class="gender">
-        <% if (demographics.gender == "Male") {%>
-          <img src="/images/male.jpg" width="100px">
-        <%} else {%>
-          <img src="/images/female.jpg" width="100px">
-        <%}%>
-      </p>
-      <p class="marital">Marital Status:<%= demographics.marital_status %></p>
-  </div> 
-  <div class="row">
-      <div class="address span4">
-        <h2> <%= demographics.address.street %></h2>
-        <p> <%= demographics.address.city %>,<%= demographics.address.state %>,<%= demographics.address.country %>.</p>
-        <p><%= demographics.address.zip %></p>
-        <p class="phoneHome"><%= demographics.phone.home %></p>
-     
-      </div>
-      <div class="span4">
-        <h2>Other Information</h2>
-        <p class="race"><%= demographics.race %></p>
-        <p class="ethnicity"><%= demographics.ethnicity %></p>
-        <p class="religion"><%= demographics.religion %></p>
-      </div>
+<div class="col-xs-4">
+  <div class="header-unit">
+    <h3><%= demographics.name.family %> <%= demographics.name.given %></h3>
+    <strong><%= demographics.gender %>,<%= demographics.marital_status %>,<%= demographics.religion %>,<%= demographics.race %>,<%= demographics.ethnicity %></strong>
+    <p> 
+      <small class="gray">Language:</small>English</br>
+      <small class="gray">Birthday:</small><%= demographics.dob.substr(0,10) %></br>
+      <small class="gray">Address:</small><%= demographics.address.street %>, <%= demographics.address.city %>,<%= demographics.address.state %>,<%= demographics.address.country %> <%= demographics.address.zip %><br>
+      <small class="gray">Phone:</small><%= demographics.phone.home %>
+    </p>
   </div>
+</div>
+<div class="col-xs-4">
+   <h3><%= demographics.guardian.name.family %> <%= demographics.guardian.name.given %></h3>
+  <strong><%= demographics.guardian.relationship %></strong>
+  <p> 
+    <small class="gray">Address:</small><%= demographics.guardian.address.street %>, <%= demographics.guardian.address.city %>,<%= demographics.guardian.address.state %>,<%= demographics.guardian.address.country %> <%= demographics.guardian.address.zip %><br>
+    <small class="gray">Phone:</small><%= demographics.guardian.phone.home %>
+  </p>
+</div>
+<div class="col-xs-4">
+    <div class="header-unit">
+    <h3><%= demographics.provider.organization%></h3>
+    <strong>Provider</strong>
+    <p> 
+      <small class="gray">Address:</small><%= demographics.provider.address.street %>, <%= demographics.provider.address.city %>,<%= demographics.provider.address.state %>,<%= demographics.provider.address.country %> <%= demographics.provider.address.zip %><br>
+     <small class="gray">Phone:</small><%= demographics.provider.phone %>
+    </p>
+  </div>
+</div>

@@ -10,37 +10,7 @@
       </div>
     </div>
     <% } else if(user.xml!=null) { %>
-  	<div class="row">
-	    <div class="col-xs-4">
-	    	<div class="header-unit">
-			  <h3>Ellen Ross</h3>
-			  <strong>Female,Married,Christian,Asian</strong>
-			  <p> 
-			  	<small class="gray">Language:</small>English</br>
-			  	<small class="gray">Birthday:</small>Mar 7 1960</br>
-			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
-			  	<small class="gray">Phone:</small>415-555-1229
-			  </p>
-			</div>
-	    </div>
-	    <div class="col-xs-4">
-	    	 <h3>Marta Shan</h3>
-			  <strong>Sister</strong>
-			  <p> 
-			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
-			  	<small class="gray">Phone:</small>415-555-1229
-			  </p>
-	    </div>
-	    <div class="col-xs-4">
-	    	<div class="header-unit">
-			  <h3>Ashby Medical Center</h3>
-			  <strong>Provider</strong>
-			  <p> 
-			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
-			  	<small class="gray">Phone:</small>415-555-1229
-			  </p>
-			</div>
-	    </div>
+  	  <div class="row" id="demographics">
 	  </div>
 	  <hr>
 	  <div class="row">
@@ -103,6 +73,9 @@
 	  <script src="/js/bootstrap.min.js"></script>
 	  <script src="/js/ejs.js"></script>
 	  <script src="/js/bindaas.js"></script>
+	  <script>
+	    showLabs();
+	  </script>
 	<% } else { %> 
 		<a class="btn btn-primary btn-lg" href="/upload">Upload New CCDA Document</a>
 	<% } %>

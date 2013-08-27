@@ -10,38 +10,7 @@
       </div>
     </div>
     <% } else if(user.xml!=null) { %>
-
-	  <div class="row">
-	    <div class="col-xs-4">
-	    	<div class="header-unit">
-			  <h3>Ellen Ross</h3>
-			  <strong>Female,Married,Christian,Asian</strong>
-			  <p> 
-			  	<small class="gray">Language:</small>English</br>
-			  	<small class="gray">Birthday:</small>Mar 7 1960</br>
-			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
-			  	<small class="gray">Phone:</small>415-555-1229
-			  </p>
-			</div>
-	    </div>
-	    <div class="col-xs-4">
-	    	 <h3>Marta Shan</h3>
-			  <strong>Sister</strong>
-			  <p> 
-			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
-			  	<small class="gray">Phone:</small>415-555-1229
-			  </p>
-	    </div>
-	    <div class="col-xs-4">
-	    	<div class="header-unit">
-			  <h3>Ashby Medical Center</h3>
-			  <strong>Provider</strong>
-			  <p> 
-			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
-			  	<small class="gray">Phone:</small>415-555-1229
-			  </p>
-			</div>
-	    </div>
+	  <div class="row" id="demographics">
 	  </div>
 	  <hr>
 	  <div class="row">
@@ -115,21 +84,7 @@
 	  			</div>
 	  		</div>
 	  		<div class="row">
-	  			<div class="col-xs-12">
-	  				<div class="header-unit">
-					  <h3>Allergies</h3>
-					  <hr>
-					  <strong>Penicillin</strong>
-					  <p>
-					  <small class="gray">Reaction:</small> Hive<br>
-					  <small class="gray">Severity:</small>Moderate to Severe
-					  </p>
-					  <strong>Bee Stings</strong>
-					  <p>
-					  <small class="gray">Reaction:</small> Hive<br>
-					  <small class="gray">Severity:</small>Moderate to Severe
-					  </p>
-					</div>
+	  			<div class="col-xs-12" id="allergies">
 	  			</div>
 	  		</div>
 	  		<div class="row">
@@ -151,112 +106,13 @@
 	  <footer>
 		<p>© GSOC 2013</p>
 	  </footer>
-    <div class="row-fluid">
-		<div class="span9">
-			<div id="demographics">
-			  <div class="hero-unit">  
-					<h1 class="family"><%= demographics.name.family %> 
-				    <%- partial('ccda/listGivenName', demographics.name.given) %></h1> 
-					<p class="dob">Date of Birth:<%= demographics.dob.substr(0,10) %></p> 
-				    <p class="gender">
-				    	<% if (demographics.gender == "Male") {%>
-				    		<img src="/images/male.jpg" width="100px">
-				    	<%} else {%>
-				    		<img src="/images/female.jpg" width="100px">
-				    	<%}%>
-				    </p>
-				    <p class="marital">Marital Status:<%= demographics.marital_status %></p>
-				</div> 
-				<div class="row">
-				    <div class="address span4">
-					    <h2> <%- partial('ccda/listStreet', demographics.address.street) %></h2>
-					    <p> <%= demographics.address.city %>,<%= demographics.address.state %>,<%= demographics.address.country %>.</p>
-					    <p><%= demographics.address.zip %></p>
-					    <p class="phoneHome"><%= demographics.phone.home %></p>
-				   
-				    </div>
-				    <div class="span4">
-				    	<h2>Other Information</h2>
-				    	<p class="race"><%= demographics.race %></p>
-				    	<p class="ethnicity"><%= demographics.ethnicity %></p>
-					    <p class="religion"><%= demographics.religion %></p>
-				    </div>
-				</div>
-			</div>
-			<div id="allergyList">
-			  <div class="hero-unit">
-			    <h1>Allergies</h1>
-			    <div class="row">
-			   		<%- partial('ccda/listAllergy', allergies) %>
-			    </div>
-			  </div>
-			  <div class="row-fluid"></div>
-			</div>
-			<div id="immunizationList">
-			  <div class="hero-unit">
-			    <h1>Immunizations</h1>
-			    <div class="row">
-			    <%- partial('ccda/listImmunization', immunizations) %>
-			    </div>
-			  </div>
-			  <div class="row-fluid"></div>
-			</div>
-			<div id="medicationList">
-			  <div class="hero-unit">
-			    <h1>Medications</h1>
-			    <div class="row">
-			   		<%- partial('ccda/listMedication', medications) %>
-			    </div>
-			  </div>
-			  <div class="row-fluid"></div>
-			</div>
-			<div id="labList">
-			 <div class="hero-unit">
-			    <h1>Labs</h1>
-			    <div class="row">
-			    <%- partial('ccda/listLab', labs) %>
-			    </div>
-			  </div>
-			  <div class="row-fluid"></div>
-			</div>
-			<div id="encounterList">
-			 <div class="hero-unit">
-			 <h1>Encounters</h1>
-			    <div class="row">
-			    <%- partial('ccda/listEncounter', encounters) %>
-			    </div>
-			  </div>
-			  <div class="row-fluid"></div>
-			</div>
-			<div id="problemList">
-			 <div class="hero-unit">
-				 <h1>Problems</h1>
-			    <div class="row">
-			    <%- partial('ccda/listProblem', problems) %>
-			    </div>
-			  </div>
-			  <div class="row-fluid"></div>
-			</div>
-			<div id="procedureList">
-			 <div class="hero-unit">
-				 <h1>Procedures</h1>
-			    <div class="row">
-			    <%- partial('ccda/listProcedure', procedures) %>
-			    </div>
-			  </div>
-			  <div class="row-fluid"></div>
-			</div>
-			<div id="vitalList">
-			 <div class="hero-unit">
-				 <h1>Vitals</h1>
-			    <div class="row">
-			    <%- partial('ccda/listVital', vitals) %>
-			    </div>
-			  </div>
-			  <div class="row-fluid"></div>
-			</div>
-		</div>
-	</div>
+	   <script src="/js/jquery.js"></script>
+	  <script src="/js/bootstrap.min.js"></script>
+	  <script src="/js/ejs.js"></script>
+	  <script src="/js/bindaas.js"></script>
+	  <script>
+	  	showTimeline();
+	  </script>
 	<% } else { %> 
 		<a class="btn btn-primary btn-lg" href="/upload">Upload New CCDA Document</a>
 	<% } %>
