@@ -40,7 +40,7 @@ module.exports = function(app) {
     return date.toGMTString().substr(5,11);
     }
   }
-  app.get('/timeline', function(req, res) {
+  app.get('/', function(req, res) {
      if ((req.session.user)&&(req.session.user.xml!=null))
      {
           var record = fs.readFileSync(path.resolve(__dirname, '../public/'+req.session.user.xml), 'utf-8');
@@ -61,6 +61,108 @@ module.exports = function(app) {
       }else{
           res.render('index', {
             title: 'Home',
+            allergies:[],
+            demographics:[],
+            medications:[],
+            immunizations:[],
+            labs:[],
+            encounters:[],
+            medications:[],
+            problems:[],
+            procedures:[],
+            vitals:[]
+          });
+      }
+  });
+  app.get('/timeline', function(req, res) {
+     if ((req.session.user)&&(req.session.user.xml!=null))
+     {
+          var record = fs.readFileSync(path.resolve(__dirname, '../public/'+req.session.user.xml), 'utf-8');
+          var bb = BlueButton(record);
+          res.render('timeline', {
+            title: 'Home',
+            allergies:toJSON(bb.allergies()),
+            demographics:toJSON(bb.demographics()),
+            medications:toJSON(bb.medications()),
+            immunizations:toJSON(bb.immunizations()),
+            labs:toJSON(bb.labs()),
+            encounters:toJSON(bb.encounters()),
+            medications:toJSON(bb.medications()),
+            problems:toJSON(bb.problems()),
+            procedures:toJSON(bb.procedures()),
+            vitals:toJSON(bb.vitals())
+          });
+      }else{
+          res.render('timeline', {
+            title: 'Home',
+            allergies:[],
+            demographics:[],
+            medications:[],
+            immunizations:[],
+            labs:[],
+            encounters:[],
+            medications:[],
+            problems:[],
+            procedures:[],
+            vitals:[]
+          });
+      }
+  });
+  app.get('/timeline/detail', function(req, res) {
+     if ((req.session.user)&&(req.session.user.xml!=null))
+     {
+          var record = fs.readFileSync(path.resolve(__dirname, '../public/'+req.session.user.xml), 'utf-8');
+          var bb = BlueButton(record);
+          res.render('detail', {
+            title: 'Detail',
+            allergies:toJSON(bb.allergies()),
+            demographics:toJSON(bb.demographics()),
+            medications:toJSON(bb.medications()),
+            immunizations:toJSON(bb.immunizations()),
+            labs:toJSON(bb.labs()),
+            encounters:toJSON(bb.encounters()),
+            medications:toJSON(bb.medications()),
+            problems:toJSON(bb.problems()),
+            procedures:toJSON(bb.procedures()),
+            vitals:toJSON(bb.vitals())
+          });
+      }else{
+          res.render('detail', {
+            title: 'Detail',
+            allergies:[],
+            demographics:[],
+            medications:[],
+            immunizations:[],
+            labs:[],
+            encounters:[],
+            medications:[],
+            problems:[],
+            procedures:[],
+            vitals:[]
+          });
+      }
+  });
+  app.get('/timeline/labs', function(req, res) {
+     if ((req.session.user)&&(req.session.user.xml!=null))
+     {
+          var record = fs.readFileSync(path.resolve(__dirname, '../public/'+req.session.user.xml), 'utf-8');
+          var bb = BlueButton(record);
+          res.render('labs', {
+            title: 'Labs',
+            allergies:toJSON(bb.allergies()),
+            demographics:toJSON(bb.demographics()),
+            medications:toJSON(bb.medications()),
+            immunizations:toJSON(bb.immunizations()),
+            labs:toJSON(bb.labs()),
+            encounters:toJSON(bb.encounters()),
+            medications:toJSON(bb.medications()),
+            problems:toJSON(bb.problems()),
+            procedures:toJSON(bb.procedures()),
+            vitals:toJSON(bb.vitals())
+          });
+      }else{
+          res.render('labs', {
+            title: 'Labs',
             allergies:[],
             demographics:[],
             medications:[],

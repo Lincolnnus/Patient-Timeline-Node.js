@@ -1,0 +1,140 @@
+ 	<% if (!user) { %>
+ 	<div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to Timeline Viewer</h1> 
+		<p>Timeline Viewer is Based on Node.js</p>   
+		<p>  
+			<a class="btn btn-primary btn-lg" href="/timeline/login">Login</a>
+		    <a class="btn btn-default btn-lg" href="/timeline/reg">Register</a> 
+		</p> 
+      </div>
+    </div>
+    <% } else if(user.xml!=null) { %>
+     <div class="row">
+	    <div class="col-xs-4">
+	    	<div class="header-unit">
+			  <h3>Ellen Ross</h3>
+			  <strong>Female,Married,Christian,Asian</strong>
+			  <p> 
+			  	<small class="gray">Language:</small>English</br>
+			  	<small class="gray">Birthday:</small>Mar 7 1960</br>
+			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
+			  	<small class="gray">Phone:</small>415-555-1229
+			  </p>
+			</div>
+	    </div>
+	    <div class="col-xs-4">
+	    	 <h3>Marta Shan</h3>
+			  <strong>Sister</strong>
+			  <p> 
+			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
+			  	<small class="gray">Phone:</small>415-555-1229
+			  </p>
+	    </div>
+	    <div class="col-xs-4">
+	    	<div class="header-unit">
+			  <h3>Ashby Medical Center</h3>
+			  <strong>Provider</strong>
+			  <p> 
+			  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
+			  	<small class="gray">Phone:</small>415-555-1229
+			  </p>
+			</div>
+	    </div>
+	  </div>
+	  <hr>
+	  <div class="row">
+	  	<div class="col-xs-6">
+	  		<div class="row">
+	  			<h3><i class="icon-plan"></i>Plan of Care</h3>
+	  			<hr>
+	  			<div class="row detail">
+		  			<div class="col-xs-3 right">
+		  				<span class="date date-plan">Jun 2,2007</span>
+		  			</div>
+		  			<div class="col-xs-9">
+		  				<strong>Chest X-Ray</strong>
+		  			</div>
+		  		</div>
+	  			<div class="row detail">
+		  			<div class="col-xs-3 right">
+		  				<span class="date date-plan">Jun 1,2007</span>
+		  				<p><span class="gray">Instructions:</span></p>
+		  			</div>
+		  			<div class="col-xs-9">
+		  				<strong>Office consultation</strong>
+		  				<p>Consultation with Dr.George</p>
+		  			</div>
+		  		</div>
+	  		</div>
+	  		<div class="row">
+	  			<h3><i class="icon-encounter"></i>Encounters</h3>
+	  			<hr>
+	  			<div class="row detail">
+		  			<div class="col-xs-3 right">
+		  				<span class="date date-encounter">Jun 2,2007</span>
+		  			</div>
+		  			<div class="col-xs-9">
+		  				<strong>Chest X-Ray</strong>
+		  			</div>
+		  		</div>
+	  		</div>
+	  		<div class="row">
+	  			<h3><i class="icon-immunization"></i>Immunizations</h3>
+	  			<hr>
+	  			<div class="row detail">
+		  			<div class="col-xs-3 right">
+		  				<span class="date date-immunization">Jun 2,2007</span>
+		  			</div>
+		  			<div class="col-xs-9">
+		  				<strong>Chest X-Ray</strong>
+		  			</div>
+		  		</div>
+	  		</div>
+	  	</div>
+	  	<div class="col-xs-6">
+	  		<div class="row">
+	  			<h3><i class="icon-medication"></i>Medications</h3>
+	  			<hr>
+	  			<div class="row detail">
+		  			<div class="col-xs-3 right">
+		  				<span class="date date-medication">Jun 2,2007</span>
+		  			</div>
+		  			<div class="col-xs-9">
+		  				<strong>Chest X-Ray</strong>
+		  			</div>
+		  		</div>
+	  		</div>
+	  		<div class="row">
+	  			<h3><i class="icon-problem"></i>Problem List</h3>
+	  			<hr>
+	  			<div class="row detail">
+		  			<div class="col-xs-3 right">
+		  				<span class="date date-problem">Jun 2,2007</span>
+		  			</div>
+		  			<div class="col-xs-9">
+		  				<strong>Chest X-Ray</strong>
+		  			</div>
+		  		</div>
+	  		</div>
+	  		<div class="row">
+	  			<h3><i class="icon-procedure"></i>Procedures</h3>
+	  			<hr>
+	  			<div class="row detail">
+		  			<div class="col-xs-3 right">
+		  				<span class="date date-procedure">Jun 2,2007</span>
+		  			</div>
+		  			<div class="col-xs-9">
+		  				<strong>Chest X-Ray</strong>
+		  			</div>
+		  		</div>
+	  		</div>
+	  	</div>
+	  </div>
+	  <hr>
+	  <footer>
+		<p>© GSOC 2013</p>
+	  </footer>
+	<% } else { %> 
+		<a class="btn btn-primary btn-large" href="/upload">Upload New CCDA Document</a>
+	<% } %>

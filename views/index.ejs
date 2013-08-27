@@ -1,12 +1,14 @@
  	<% if (!user) { %>
- 	<div class="hero-unit">  
-	<h1>Welcome to Timeline Viewer</h1> 
-	<p>Timeline Viewer is Based on Node.js</p>   
-	<p>  
-		<a class="btn btn-primary btn-large" href="/timeline/login">Login</a>
-	    <a class="btn btn-large" href="/timeline/reg">Register</a> 
-	</p> 
-	</div> 
+ 	<div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to Timeline Viewer</h1> 
+		<p>Timeline Viewer is Based on Node.js</p>   
+		<p>  
+			<a class="btn btn-primary btn-lg" href="/timeline/login">Login</a>
+		    <a class="btn btn-default btn-lg" href="/timeline/reg">Register</a> 
+		</p> 
+      </div>
+    </div>
     <% } else if(user.xml!=null) { %>
 
 	  <div class="row">
@@ -256,5 +258,5 @@
 		</div>
 	</div>
 	<% } else { %> 
-		<a class="btn btn-primary btn-large" href="/upload">Upload New CCDA Document</a>
+		<a class="btn btn-primary btn-large" href="/timeline/upload">Upload New CCDA Document</a>
 	<% } %>

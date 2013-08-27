@@ -60,12 +60,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/timeline/detail">Detail</a></li>
-            <li><a href="/timeline/labs">Labs</a></li>
             <% if (!user) { %>
 	           <li><a href="/timeline/login">Login</a></li>
-	           <li><a href="/timeline/reg">Register</a></li>
 	        <% } else { %>
+             <li><a href="/timeline/detail">Detail</a></li>
+             <li><a href="/timeline/labs">Labs</a></li>
 	           <li><a href="/timeline/upload">Upload CCDA</a></li>
 	           <li><a href="/timeline/logout">Logout</a></li>
 	        <% } %>
