@@ -19,6 +19,7 @@ saveEncounterUrl = '/services/ccda/encounter/submit/json',
 saveProblemUrl = '/services/ccda/problem/submit/json',
 saveProcedureUrl ='/services/ccda/procedure/submit/json',
 saveVitalUrl = '/services/ccda/vital/submit/json';
+saveTimelineUrl = '/services/ccda/timeline/submit/json';
 
 var demographicsUrl = '/services/ccda/demographics/query/demographics',
 problemUrl = '/services/ccda/problem/query/problem',
@@ -29,6 +30,7 @@ labUrl = '/services/ccda/lab/query/lab',
 encounterUrl = '/services/ccda/encounter/query/encounter',
 procedureUrl = '/services/ccda/procedure/query/procedure',
 vitalUrl = '/services/ccda/vital/query/vital';
+timelineUrl = '/services/ccda/vital/query/timeline';
 
 module.exports = function(app) {
   app.locals.formatDate = function(jsonDate)
@@ -337,6 +339,11 @@ module.exports = function(app) {
   app.get('/timeline/vital.json',function(req,res){
       getCCDA(vitalUrl,req.session.user.uid,function(vitals){
       res.send(JSON.parse(vitals));
+    });
+  });
+  app.get('/timeline/timeline.json',function(req,res){
+      getCCDA(timelineUrl,req.session.user.uid,function(timeline){
+      res.send(JSON.parse(timeline));
     });
   });
   //Get the timeline view

@@ -1055,6 +1055,9 @@ function showTimelineAjax(){
     getCCDA('/timeline/allergy.json',function(allergies){
         new EJS({url: '../templates/allergies.ejs'}).update('allergies', {allergies: allergies});
     });
+    getCCDA('/timeline/timeline.json',function(allergies){
+        new EJS({url: '../templates/allergies.ejs'}).update('allergies', {allergies: allergies});
+    });
 }
 function showLabsAjax(){
     getCCDA('/timeline/lab.json',function(labs){
