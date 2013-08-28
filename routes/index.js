@@ -30,7 +30,7 @@ labUrl = '/services/ccda/lab/query/lab',
 encounterUrl = '/services/ccda/encounter/query/encounter',
 procedureUrl = '/services/ccda/procedure/query/procedure',
 vitalUrl = '/services/ccda/vital/query/vital';
-timelineUrl = '/services/ccda/vital/query/timeline';
+timelineUrl = '/services/ccda/timeline/query/timeline';
 
 module.exports = function(app) {
   app.locals.formatDate = function(jsonDate)
@@ -378,6 +378,13 @@ function uploadToBindaas(uid,xml){
       for (var i=0;i<medications.length;i++){
         medications[i].uid = uid;
         saveCCDA(saveMedicationUrl,medications[i]);
+        var record=new Object();
+        record.uid= uid;
+        record.title= medications[i].product.name;
+        record.date= medications[i].date_range.start;
+        record.dateend= medications[i].date_range.end;
+        record.type='medication';
+        saveCCDA(saveTimelineUrl,record);
       }
       for (var i=0;i<labs.length;i++){
         labs[i].uid = uid;
@@ -386,22 +393,50 @@ function uploadToBindaas(uid,xml){
       for (var i=0;i<immunizations.length;i++){
         immunizations[i].uid = uid;
         saveCCDA(saveImmunizationUrl,immunizations[i]);
+        var record=new Object();
+        record.uid= uid;
+        record.title= immunizations[i].product.name;
+        record.date= immunizations[i].date;
+        record.dateend= immunizations[i].date;
+        record.type='immunization';
+        saveCCDA(saveTimelineUrl,record);
       }
       for (var i=0;i<procedures.length;i++){
         procedures[i].uid = uid;
         saveCCDA(saveProcedureUrl,procedures[i]);
+        var record=new Object();
+        record.uid= uid;
+        record.title= procedures[i].name;
+        record.date= procedures[i].date;
+        record.dateend= procedures[i].date;
+        record.type='procedure';
+        saveCCDA(saveTimelineUrl,record);
       }
       for (var i=0;i<problems.length;i++){
         problems[i].uid = uid;
         saveCCDA(saveProblemUrl,problems[i]);
+        var record=new Object();
+        record.uid= uid;
+        record.title= problems[i].name;
+        record.date= problems[i].date_range.start;
+        record.dateend= problems[i].date_range.end;
+        record.type='problem';
+        saveCCDA(saveTimelineUrl,record);
       }
-      for (var i=0;i<vitals.length;i++){
+     /* for (var i=0;i<vitals.length;i++){
         vitals[i].uid = uid;
         saveCCDA(saveVitalUrl,vitals[i]);
-      }
+      }*/
       for (var i=0;i<encounters.length;i++){
         encounters[i].uid = uid;
         saveCCDA(saveEncounterUrl,encounters[i]);
+        var record=new Object();
+        record.uid= uid;
+        record.title= encounters[i].name;
+        record.date= encounters[i].date;
+        record.dateend= encounters[i].date;
+        record.type='encounter';
+        saveCCDA(saveTimelineUrl,record);
       }
 }
 //save the ccda via bindaas post api
