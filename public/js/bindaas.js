@@ -939,6 +939,86 @@ var procedures=[
     "uid": 0
   }
 ];
+var timeline=[
+{
+ "year": 2012,
+ "data":[
+ {
+  "title":"Chest X Ray",
+  "date":"May 14 2012",
+  "type":"plan"
+},
+{
+  "title":"Chest X Ray",
+  "date":"May 14 2012",
+  "type":"plan"
+},{
+  "title":"Ankel Sprain",
+  "date":"May 10 2012",
+  "type":"problem"
+},{
+  "title":"ER Visit for Ankle Sprain",
+  "date":"May 6 2012",
+  "type":"encounter"
+}]
+},
+{
+ "year": 2007,
+ "data":[
+{
+  "title":"Acetaminophen with codeine",
+  "date":"May 14 2007",
+  "type":"medication"
+},{
+  "title":"Whole Blood Hemogram V",
+  "date":"May 10 2007",
+  "type":"lab"
+},{
+  "title":"Indomethacin",
+  "date":"May 6 2007",
+  "type":"medication"
+}]
+},
+{
+ "year": 2006,
+ "data":[
+{
+  "title":"Laparoscopic Chlecystectomy",
+  "date":"May 14 2006",
+  "type":"immunization"
+},
+ {
+  "title":"Gall Bladder Surgery",
+  "date":"May 10 2007",
+  "type":"encounter"
+},{
+  "title":"Cholecystitis",
+  "date":"May 6 2007",
+  "type":"problem"
+}]
+},{
+ "year": 2005,
+ "data":[
+{
+  "title":"Tetanus and diphtheria toxoid,IM",
+  "date":"May 6 2005",
+  "type":"immunization"
+},
+{
+  "title":"Cesarian Section",
+  "date":"May 14 2005",
+  "type":"procedure"
+}]
+},{
+ "year": 2004,
+ "data":[
+ {
+  "title":"Tetanus and diphtheria toxoid,IM",
+  "date":"May 6 2007",
+  "type":"immunization"
+}]
+}
+];
 function showDetail(){
     new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
     new EJS({url: '../templates/immunizations.ejs'}).update('immunizations', {immunizations: immunizations});
@@ -993,6 +1073,7 @@ function getCCDA(url,callback){
 function showTimeline(){
     new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
     new EJS({url: '../templates/allergies.ejs'}).update('allergies', {allergies: allergies});
+    new EJS({url: '../templates/timeline.ejs'}).update('timeline', {timeline: timeline});
 }
 function showLabs(){
   new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});

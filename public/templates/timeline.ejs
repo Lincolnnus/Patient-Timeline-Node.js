@@ -1,0 +1,43 @@
+
+<span class="label label-info label-corner">2013</span>
+<% for (var i=0;i<timeline.length;i++){%>
+<div class="row  timeline">
+	<div class="col-xs-6 right">
+	<% for (var j=0;j<timeline[i].data.length; j++){
+		if (j == Math.ceil(timeline[i].data.length/2)) {%>
+		</div><div class="col-xs-6 left">
+	   <% }
+		switch(timeline[i].data[j].type)
+		{
+			case 'plan': %>
+				<blockquote><%= timeline[i].data[j].title %> <small><%= timeline[i].data[j].date %></small><i class="icon-plan"></i></blockquote>
+			<%  break;
+			case 'encounter': %>
+				<blockquote><%= timeline[i].data[j].title %> <small><%= timeline[i].data[j].date %></small><i class="icon-encounter"></i></blockquote>
+			<%  break;
+			case 'lab': %>
+				<blockquote><%= timeline[i].data[j].title %> <small><%= timeline[i].data[j].date %></small><i class="icon-lab"></i></blockquote>
+			<%  break;
+			case 'medication': %>
+				<blockquote><%= timeline[i].data[j].title %> <small><%= timeline[i].data[j].date %></small><i class="icon-medication"></i></blockquote>
+			<%  break;
+			case 'immunization': %>
+				<blockquote><%= timeline[i].data[j].title %> <small><%= timeline[i].data[j].date %></small><i class="icon-immunization"></i></blockquote>
+			<%  break;
+			case 'problem': %>
+				<blockquote><%= timeline[i].data[j].title %> <small><%= timeline[i].data[j].date %></small><i class="icon-problem"></i></blockquote>
+			<%  break;
+			case 'procedure': %>
+				<blockquote><%= timeline[i].data[j].title %> <small><%= timeline[i].data[j].date %></small><i class="icon-procedure"></i></blockquote>
+			<%  break;
+		    default: %>
+			  not exist
+			<% break; 
+		}
+	}
+	%>
+	</div>
+</div>
+<hr class="dashed">
+<span class="label label-info label-corner"><%= timeline[i].year %></span>
+<%}%>
