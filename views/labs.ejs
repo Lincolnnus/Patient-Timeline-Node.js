@@ -10,10 +10,11 @@
       </div>
     </div>
     <% } else if(user.xml!=null) { %>
-  	  <div class="row" id="demographics">
+  	  <div class="container">
+	  <div class="row" id="demographics">
 	  </div>
 	  <hr>
-	  <div class="row">
+	  <div class="row" id="labs">
 	  	<div class="col-xs-6">
 	  		<div class="row">
 	  			<h3><i class="icon-lab"></i>Plasma<small class="right">Chemistry/Hematology</small></h3>
@@ -70,12 +71,12 @@
 		<p>© GSOC 2013</p>
 	  </footer>
 	  <script src="/js/jquery.js"></script>
-	  <script src="/js/bootstrap.min.js"></script>
 	  <script src="/js/ejs.js"></script>
-	  <script src="/js/bindaas.js"></script>
+	  <script src="/js/data.js"></script>
+	  <script src="/js/timeline.js"></script>
 	  <script>
 	    showLabs();
-	    // showLabsAjax(); if you want to use ajax
+	    //showLabsAjax(); //if you want to use ajax
 	  </script>
 	<% } else { %> 
 		<a class="btn btn-primary btn-lg" href="/upload">Upload New CCDA Document</a>

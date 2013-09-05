@@ -939,157 +939,675 @@ var procedures=[
     "uid": 0
   }
 ];
-var timeline=[
-{
- "year": 2012,
- "data":[
- {
-  "title":"Chest X Ray",
-  "date":"May 14 2012",
-  "type":"plan"
-},
-{
-  "title":"Chest X Ray",
-  "date":"May 14 2012",
-  "type":"plan"
-},{
-  "title":"Ankel Sprain",
-  "date":"May 10 2012",
-  "type":"problem"
-},{
-  "title":"ER Visit for Ankle Sprain",
-  "date":"May 6 2012",
-  "type":"encounter"
-}]
-},
-{
- "year": 2007,
- "data":[
-{
-  "title":"Acetaminophen with codeine",
-  "date":"May 14 2007",
-  "type":"medication"
-},{
-  "title":"Whole Blood Hemogram V",
-  "date":"May 10 2007",
-  "type":"lab"
-},{
-  "title":"Indomethacin",
-  "date":"May 6 2007",
-  "type":"medication"
-}]
-},
-{
- "year": 2006,
- "data":[
-{
-  "title":"Laparoscopic Chlecystectomy",
-  "date":"May 14 2006",
-  "type":"immunization"
-},
- {
-  "title":"Gall Bladder Surgery",
-  "date":"May 10 2007",
-  "type":"encounter"
-},{
-  "title":"Cholecystitis",
-  "date":"May 6 2007",
-  "type":"problem"
-}]
-},{
- "year": 2005,
- "data":[
-{
-  "title":"Tetanus and diphtheria toxoid,IM",
-  "date":"May 6 2005",
-  "type":"immunization"
-},
-{
-  "title":"Cesarian Section",
-  "date":"May 14 2005",
-  "type":"procedure"
-}]
-},{
- "year": 2004,
- "data":[
- {
-  "title":"Tetanus and diphtheria toxoid,IM",
-  "date":"May 6 2007",
-  "type":"immunization"
-}]
-}
-];
-function showDetail(){
-    new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
-    new EJS({url: '../templates/immunizations.ejs'}).update('immunizations', {immunizations: immunizations});
-    new EJS({url: '../templates/encounters.ejs'}).update('encounters', {encounters: encounters});
-    new EJS({url: '../templates/medications.ejs'}).update('medications', {medications: medications});
-    new EJS({url: '../templates/problems.ejs'}).update('problems', {problems: problems});
-    new EJS({url: '../templates/procedures.ejs'}).update('procedures', {procedures: procedures});
-}
 
-function showDetailAjax(){
-    getCCDA('/timeline/demographics.json',function(demographics){
-      new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
-    });
-    getCCDA('/timeline/problem.json',function(problems){
-        new EJS({url: '../templates/problems.ejs'}).update('problems', {problems: problems});
-    });
-    getCCDA('/timeline/procedure.json',function(procedures){
-        new EJS({url: '../templates/procedures.ejs'}).update('procedures', {procedures: procedures});
-    });
-    getCCDA('/timeline/immunization.json',function(immunizations){
-        new EJS({url: '../templates/immunizations.ejs'}).update('immunizations', {immunizations: immunizations});
-    });
-    getCCDA('/timeline/medication.json',function(medications){
-        new EJS({url: '../templates/medications.ejs'}).update('medications', {medications: medications});
-    });
-    getCCDA('/timeline/encounter.json',function(encounters){
-        new EJS({url: '../templates/encounters.ejs'}).update('encounters', {encounters: encounters});
-    });
-}
-function showTimelineAjax(){
-    getCCDA('/timeline/demographics.json',function(demographics){
-      new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
-    });
-    getCCDA('/timeline/allergy.json',function(allergies){
-        new EJS({url: '../templates/allergies.ejs'}).update('allergies', {allergies: allergies});
-    });
-    getCCDA('/timeline/timeline.json',function(allergies){
-        new EJS({url: '../templates/allergies.ejs'}).update('allergies', {allergies: allergies});
-    });
-}
-function showLabsAjax(){
-    getCCDA('/timeline/lab.json',function(labs){
-       new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
-      // new EJS({url: '../templates/labs.ejs'}).update('labs', {labs: labs});
-    });
-}
-function getCCDA(url,callback){
-     $.ajax({
-        url: url,
-        contentType: "application/json",
-    }).done(function(data) {
-      callback(data);
-    });
-}
-function showTimeline(){
-    new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
-    new EJS({url: '../templates/allergies.ejs'}).update('allergies', {allergies: allergies});
-    new EJS({url: '../templates/timeline.ejs'}).update('timeline', {timeline: timeline});
-}
-function showLabs(){
-  new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
-}
-function formatDate(jsonDate)
-{
-  if(jsonDate == null){
-    return 'Now';
-  }else{
-  var date = new Date(parseInt(jsonDate.substr(6)));
-  return date.toGMTString().substr(5,11);
+var timeline=[
+  {
+    "_id": {
+      "$oid": "5227f4493004e02710e90381"
+    },
+    "title": "Pneumococcal polysaccharide vaccine",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f4493004e02710e90382"
+    },
+    "title": "Tetanus and diphtheria toxoids - preservative free",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f4493004e02710e90384"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-02T16:00:00.000Z",
+    "dateend": "2011-02-02T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f4493004e02710e90385"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-14T16:00:00.000Z",
+    "dateend": "2011-02-14T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f4493004e02710e90388"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-02T16:00:00.000Z",
+    "dateend": "2011-02-02T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f4493004e02710e9038b"
+    },
+    "title": "Office consultation - 15 minutes",
+    "date": "2000-04-06T16:00:00.000Z",
+    "dateend": "2000-04-06T16:00:00.000Z",
+    "type": "encounter"
+  },
+  {
+    "_id": {
+      "$oid": "5227f4493004e02710e9038c"
+    },
+    "title": "Complaint",
+    "date": "1998-02-27T16:00:00.000Z",
+    "dateend": "2011-01-02T16:00:00.000Z",
+    "type": "problem"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e90393"
+    },
+    "title": "Albuterol 0.09 MG/ACTUAT inhalant solution",
+    "date": "2011-02-28T16:00:00.000Z",
+    "dateend": "2012-02-29T16:00:00.000Z",
+    "type": "medication"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e90396"
+    },
+    "title": "Influenza virus vaccine",
+    "date": "1999-10-30T16:00:00.000Z",
+    "dateend": "1999-10-30T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e9039a"
+    },
+    "title": "Tetanus and diphtheria toxoids - preservative free",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e90397"
+    },
+    "title": "Influenza virus vaccine",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e9039c"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-14T16:00:00.000Z",
+    "dateend": "2011-02-14T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e90398"
+    },
+    "title": "Pneumococcal polysaccharide vaccine",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e9039f"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-02T16:00:00.000Z",
+    "dateend": "2011-02-02T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e903a1"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-02T16:00:00.000Z",
+    "dateend": "2011-02-02T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f58f3004e02710e903a3"
+    },
+    "title": "Complaint",
+    "date": "1998-02-27T16:00:00.000Z",
+    "dateend": "2011-01-02T16:00:00.000Z",
+    "type": "problem"
+  },
+  {
+    "_id": {
+      "$oid": "5227f6d43004e02710e903a9"
+    },
+    "title": "Albuterol 0.09 MG/ACTUAT inhalant solution",
+    "date": "2011-02-28T16:00:00.000Z",
+    "dateend": "2012-02-29T16:00:00.000Z",
+    "type": "medication"
+  },
+  {
+    "_id": {
+      "$oid": "5227f7683004e02710e903af"
+    },
+    "title": "Influenza virus vaccine",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f7683004e02710e903b2"
+    },
+    "title": "Pneumococcal polysaccharide vaccine",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f7683004e02710e903b0"
+    },
+    "title": "Influenza virus vaccine",
+    "date": "1999-10-30T16:00:00.000Z",
+    "dateend": "1999-10-30T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f7683004e02710e903b4"
+    },
+    "title": "Tetanus and diphtheria toxoids - preservative free",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f7683004e02710e903b8"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-14T16:00:00.000Z",
+    "dateend": "2011-02-14T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f7683004e02710e903ba"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-02T16:00:00.000Z",
+    "dateend": "2011-02-02T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f7683004e02710e903bb"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-02T16:00:00.000Z",
+    "dateend": "2011-02-02T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f7683004e02710e903bd"
+    },
+    "title": "Complaint",
+    "date": "1998-02-27T16:00:00.000Z",
+    "dateend": "2011-01-02T16:00:00.000Z",
+    "type": "problem"
+  },
+  {
+    "_id": {
+      "$oid": "5227f8ba3004e02710e903c3"
+    },
+    "title": "Influenza virus vaccine",
+    "date": "1999-10-30T16:00:00.000Z",
+    "dateend": "1999-10-30T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f8ba3004e02710e903c7"
+    },
+    "title": "Pneumococcal polysaccharide vaccine",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f8ba3004e02710e903c5"
+    },
+    "title": "Influenza virus vaccine",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f8ba3004e02710e903c9"
+    },
+    "title": "Tetanus and diphtheria toxoids - preservative free",
+    "date": "1998-12-14T16:00:00.000Z",
+    "dateend": "1998-12-14T16:00:00.000Z",
+    "type": "immunization"
+  },
+  {
+    "_id": {
+      "$oid": "5227f8ba3004e02710e903ca"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-14T16:00:00.000Z",
+    "dateend": "2011-02-14T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f8ba3004e02710e903cd"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-02T16:00:00.000Z",
+    "dateend": "2011-02-02T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f8ba3004e02710e903cf"
+    },
+    "title": "Colonic polypectomy",
+    "date": "2011-02-02T16:00:00.000Z",
+    "dateend": "2011-02-02T16:00:00.000Z",
+    "type": "procedure"
+  },
+  {
+    "_id": {
+      "$oid": "5227f8ba3004e02710e903d1"
+    },
+    "title": "Complaint",
+    "date": "1998-02-27T16:00:00.000Z",
+    "dateend": "2011-01-02T16:00:00.000Z",
+    "type": "problem"
   }
-}
-function showMore(url){
-  window.open(url);
-}
+];
+
+var labs=[
+  {
+    "_id": {
+      "$oid": "521c55eb3004e6fefc38aea1"
+    },
+    "name": "CBC WO DIFFERENTIAL",
+    "code": "43789009",
+    "code_system": "2.16.840.1.113883.6.96",
+    "code_system_name": "SNOMED CT",
+    "results": [
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "HGB",
+        "value": 13,
+        "unit": "g/dl",
+        "code": "30313-1",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "WBC",
+        "value": 6,
+        "unit": "10+3/ul",
+        "code": "33765-9",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "PLT",
+        "value": 123,
+        "unit": "10+3/ul",
+        "code": "26515-7",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      }
+    ],
+    "uid": 0
+  },
+  {
+    "_id": {
+      "$oid": "521c58603004e6fefc38aeb2"
+    },
+    "name": "CBC WO DIFFERENTIAL",
+    "code": "43789009",
+    "code_system": "2.16.840.1.113883.6.96",
+    "code_system_name": "SNOMED CT",
+    "results": [
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "HGB",
+        "value": 13,
+        "unit": "g/dl",
+        "code": "30313-1",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "WBC",
+        "value": 6,
+        "unit": "10+3/ul",
+        "code": "33765-9",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "PLT",
+        "value": 123,
+        "unit": "10+3/ul",
+        "code": "26515-7",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      }
+    ],
+    "uid": 0
+  },
+  {
+    "_id": {
+      "$oid": "521d79ff30041ef425e0b7b7"
+    },
+    "name": "CBC WO DIFFERENTIAL",
+    "code": "43789009",
+    "code_system": "2.16.840.1.113883.6.96",
+    "code_system_name": "SNOMED CT",
+    "results": [
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "HGB",
+        "value": 13,
+        "unit": "g/dl",
+        "code": "30313-1",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "WBC",
+        "value": 6,
+        "unit": "10+3/ul",
+        "code": "33765-9",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "PLT",
+        "value": 123,
+        "unit": "10+3/ul",
+        "code": "26515-7",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      }
+    ],
+    "uid": 0
+  },
+  {
+    "_id": {
+      "$oid": "521d7b0130041ef425e0b7d2"
+    },
+    "name": "CBC WO DIFFERENTIAL",
+    "code": "43789009",
+    "code_system": "2.16.840.1.113883.6.96",
+    "code_system_name": "SNOMED CT",
+    "results": [
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "HGB",
+        "value": 13,
+        "unit": "g/dl",
+        "code": "30313-1",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "WBC",
+        "value": 6,
+        "unit": "10+3/ul",
+        "code": "33765-9",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "PLT",
+        "value": 123,
+        "unit": "10+3/ul",
+        "code": "26515-7",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      }
+    ],
+    "uid": 0
+  },
+  {
+    "_id": {
+      "$oid": "521d7b7d30041ef425e0b7ea"
+    },
+    "name": "CBC WO DIFFERENTIAL",
+    "code": "43789009",
+    "code_system": "2.16.840.1.113883.6.96",
+    "code_system_name": "SNOMED CT",
+    "results": [
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "HGB",
+        "value": 13,
+        "unit": "g/dl",
+        "code": "30313-1",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "WBC",
+        "value": 6,
+        "unit": "10+3/ul",
+        "code": "33765-9",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2000-03-22T16:00:00.000Z",
+        "name": "PLT",
+        "value": 123,
+        "unit": "10+3/ul",
+        "code": "26515-7",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      }
+    ],
+    "uid": 0
+  },
+  {
+    "_id": {
+      "$oid": "5225aa59300437df4d68550d"
+    },
+    "name": null,
+    "code": null,
+    "code_system": null,
+    "code_system_name": null,
+    "results": [
+      {
+        "date": "2012-12-05T16:00:00.000Z",
+        "name": "GLUCOSE",
+        "value": null,
+        "unit": null,
+        "code": "UNK",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2012-12-05T16:00:00.000Z",
+        "name": "GLUCOSE",
+        "value": null,
+        "unit": null,
+        "code": "UNK",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      }
+    ],
+    "uid": 0
+  },
+  {
+    "_id": {
+      "$oid": "5225aa59300437df4d685510"
+    },
+    "name": null,
+    "code": null,
+    "code_system": null,
+    "code_system_name": null,
+    "results": [
+      {
+        "date": "2012-12-05T16:00:00.000Z",
+        "name": "GLUCOSE",
+        "value": null,
+        "unit": null,
+        "code": "UNK",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2012-12-05T16:00:00.000Z",
+        "name": "GLUCOSE",
+        "value": null,
+        "unit": null,
+        "code": "UNK",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      }
+    ],
+    "uid": 0
+  },
+  {
+    "_id": {
+      "$oid": "5225aa59300437df4d685511"
+    },
+    "name": null,
+    "code": null,
+    "code_system": null,
+    "code_system_name": null,
+    "results": [
+      {
+        "date": "2012-12-05T16:00:00.000Z",
+        "name": "GLUCOSE",
+        "value": null,
+        "unit": null,
+        "code": "UNK",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      },
+      {
+        "date": "2012-12-05T16:00:00.000Z",
+        "name": "GLUCOSE",
+        "value": null,
+        "unit": null,
+        "code": "UNK",
+        "code_system": "2.16.840.1.113883.6.1",
+        "code_system_name": "LOINC",
+        "reference": {
+          "low": null,
+          "high": null
+        }
+      }
+    ],
+    "uid": 0
+  }
+];

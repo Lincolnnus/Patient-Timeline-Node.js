@@ -6,6 +6,29 @@
 }
 .right{
 	text-align: right;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.left{
+	text-align: left;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.right:hover{
+	border-color: #9c0001;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+    -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+    box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+.left:hover{
+	border-color: #9c0001;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+    -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+    box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
 .label-corner{
 	position: relative;
@@ -25,7 +48,7 @@
   border-left: 5px solid #eeeeee;
 }
 .detail{
-	padding-bottom: 10px;
+	padding-bottom: 30px;
 }
 .date {
   display: inline;
@@ -39,7 +62,9 @@
   vertical-align: baseline;
   border-radius: .25em;
 }
-
+p{
+	padding-top: 10px;
+}
 .date-plan{
 	background-color: #C0C0C0;
 }
@@ -57,4 +82,64 @@
 }
 .date-medication{
 	background-color: #3366CC;
+}
+.lab{
+	border-style: none none solid none;
+    border-width: 2px;
+    border-color: #E0E0E0;
+}
+.unit{
+	color:#C8C8C8;
+}
+.value-unit{
+	text-align: right;
+	margin:8px 0px 0px;
+}
+.value{
+	width: 60px;
+	color:white;
+	padding: 5px 10px 5px 10px;
+	margin: 0px 5px;
+	height: 30px;
+	width: 100px;
+}
+.healthy{
+	background-color: #00CC99;
+}
+.unhealthy{
+	background-color: #FFCC66;
+}
+.very-unhealthy{
+	background-color: #993333;
+}
+.slide-unit{
+	background-color: #D8D8D8;
+	padding: 0px 0px 10px 0px;
+	margin: 5px 0px 0px 0px;
+	height: 30px;
+}
+.slide-unit .min{
+	color:black;
+	position: absolute;
+	left:20%;
+}
+.slide-unit .max{
+	color:black;
+	position: absolute;
+	left:50%;
+}
+.slide-unit .percentage{
+	padding: 5px 0px;
+	background-color: rgba(0,200,100,0.2);
+	position: absolute;
+	left:20%;
+	width:30%;
+	height:30px;
+}
+.slide-unit .position{
+	background-color: gray;
+	position:absolute;
+	left:40%;
+	width: 3px;
+	height: 15px;
 }
