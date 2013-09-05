@@ -380,6 +380,7 @@ var request = http.request(options, function (res) {
     });
     request.on('error', function (e) {
         console.log(e.message);
+        console.log("please check that your bindaas API is succesfully set up");
     });
     request.end();
 }
