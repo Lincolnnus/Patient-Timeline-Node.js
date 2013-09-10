@@ -93,8 +93,36 @@ function formatDate(jsonDate)
   if(jsonDate == null){
     return 'Now';
   }else{
-  var date = new Date(parseInt(jsonDate.substr(6)));
-  return date.toGMTString().substr(5,11);
+  var year = jsonDate.substr(0,4);
+  var month= jsonDate.substr(5,2);
+  switch (month){
+    case '01': month='Jan';
+    break;
+    case '02':month='Feb';
+    break;
+    case '03': month='Mar';
+    break;
+    case '04':month='Apr';
+    break;
+    case '05': month='May';
+    break;
+    case '06':month='Jun';
+    break;
+    case '07': month='Jul';
+    break;
+    case '08':month='Aug';
+    break;
+    case '09': month='Sep';
+    break;
+    case '10':month='Oct';
+    break;
+    case '11':month='Nov';
+    break;
+    case '12':month='Dec';
+    break;
+  }
+  var date = jsonDate.substr(8,2);
+  return year+'.'+month+'.'+date;
   }
 }
 function showMore(url){

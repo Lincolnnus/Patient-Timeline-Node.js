@@ -348,7 +348,38 @@ var encounters=[
 var immunizations=[
   {
     "_id": {
-      "$oid": "521c55eb3004e6fefc38aea2"
+      "$oid": "52293bfb3004237dd08650c0"
+    },
+    "date": "1998-12-14T16:00:00.000Z",
+    "product": {
+      "name": "Influenza virus vaccine",
+      "code": "88",
+      "code_system": "2.16.840.1.113883.6.59",
+      "code_system_name": "CVX",
+      "translation": {
+        "name": "influenza, live, intranasal",
+        "code": "111",
+        "code_system": "2.16.840.1.113883.6.59",
+        "code_system_name": "CVX"
+      }
+    },
+    "route": {
+      "name": "Intramuscular injection",
+      "code": "IM",
+      "code_system": "2.16.840.1.113883.5.112",
+      "code_system_name": "RouteOfAdministration"
+    },
+    "instructions": "Possible flu-like symptoms for three days.",
+    "education_type": {
+      "name": "immunization education",
+      "code": "171044003",
+      "code_system": "2.16.840.1.113883.6.96"
+    },
+    "uid": 0
+  },
+  {
+    "_id": {
+      "$oid": "52293bfb3004237dd08650bd"
     },
     "date": "1999-10-30T16:00:00.000Z",
     "product": {
@@ -379,38 +410,7 @@ var immunizations=[
   },
   {
     "_id": {
-      "$oid": "521c55eb3004e6fefc38aea3"
-    },
-    "date": "1998-12-14T16:00:00.000Z",
-    "product": {
-      "name": "Influenza virus vaccine",
-      "code": "88",
-      "code_system": "2.16.840.1.113883.6.59",
-      "code_system_name": "CVX",
-      "translation": {
-        "name": "influenza, live, intranasal",
-        "code": "111",
-        "code_system": "2.16.840.1.113883.6.59",
-        "code_system_name": "CVX"
-      }
-    },
-    "route": {
-      "name": "Intramuscular injection",
-      "code": "IM",
-      "code_system": "2.16.840.1.113883.5.112",
-      "code_system_name": "RouteOfAdministration"
-    },
-    "instructions": "Possible flu-like symptoms for three days.",
-    "education_type": {
-      "name": "immunization education",
-      "code": "171044003",
-      "code_system": "2.16.840.1.113883.6.96"
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c55eb3004e6fefc38aea4"
+      "$oid": "52293bfb3004237dd08650c2"
     },
     "date": "1998-12-14T16:00:00.000Z",
     "product": {
@@ -441,7 +441,7 @@ var immunizations=[
   },
   {
     "_id": {
-      "$oid": "521c55eb3004e6fefc38aea5"
+      "$oid": "52293bfb3004237dd08650c4"
     },
     "date": "1998-12-14T16:00:00.000Z",
     "product": {
@@ -452,130 +452,6 @@ var immunizations=[
       "translation": {
         "name": "Tetanus and diphtheria toxoids - preservative free",
         "code": "09",
-        "code_system": "2.16.840.1.113883.6.59",
-        "code_system_name": "CVX"
-      }
-    },
-    "route": {
-      "name": "Intramuscular injection",
-      "code": "IM",
-      "code_system": "2.16.840.1.113883.5.112",
-      "code_system_name": "RouteOfAdministration"
-    },
-    "instructions": "Possible flu-like symptoms for three days.",
-    "education_type": {
-      "name": "immunization education",
-      "code": "171044003",
-      "code_system": "2.16.840.1.113883.6.96"
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c58603004e6fefc38aeb4"
-    },
-    "date": "1998-12-14T16:00:00.000Z",
-    "product": {
-      "name": "Pneumococcal polysaccharide vaccine",
-      "code": "33",
-      "code_system": "2.16.840.1.113883.6.59",
-      "code_system_name": "CVX",
-      "translation": {
-        "name": "Pneumococcal NOS",
-        "code": "109",
-        "code_system": "2.16.840.1.113883.6.59",
-        "code_system_name": "CVX"
-      }
-    },
-    "route": {
-      "name": "Intramuscular injection",
-      "code": "IM",
-      "code_system": "2.16.840.1.113883.5.112",
-      "code_system_name": "RouteOfAdministration"
-    },
-    "instructions": "Possible flu-like symptoms for three days.",
-    "education_type": {
-      "name": "immunization education",
-      "code": "171044003",
-      "code_system": "2.16.840.1.113883.6.96"
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c58603004e6fefc38aeb6"
-    },
-    "date": "1998-12-14T16:00:00.000Z",
-    "product": {
-      "name": "Tetanus and diphtheria toxoids - preservative free",
-      "code": "103",
-      "code_system": "2.16.840.1.113883.6.59",
-      "code_system_name": "CVX",
-      "translation": {
-        "name": "Tetanus and diphtheria toxoids - preservative free",
-        "code": "09",
-        "code_system": "2.16.840.1.113883.6.59",
-        "code_system_name": "CVX"
-      }
-    },
-    "route": {
-      "name": "Intramuscular injection",
-      "code": "IM",
-      "code_system": "2.16.840.1.113883.5.112",
-      "code_system_name": "RouteOfAdministration"
-    },
-    "instructions": "Possible flu-like symptoms for three days.",
-    "education_type": {
-      "name": "immunization education",
-      "code": "171044003",
-      "code_system": "2.16.840.1.113883.6.96"
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c58603004e6fefc38aeb3"
-    },
-    "date": "1999-10-30T16:00:00.000Z",
-    "product": {
-      "name": "Influenza virus vaccine",
-      "code": "88",
-      "code_system": "2.16.840.1.113883.6.59",
-      "code_system_name": "CVX",
-      "translation": {
-        "name": "influenza, live, intranasal",
-        "code": "111",
-        "code_system": "2.16.840.1.113883.6.59",
-        "code_system_name": "CVX"
-      }
-    },
-    "route": {
-      "name": "Intramuscular injection",
-      "code": "IM",
-      "code_system": "2.16.840.1.113883.5.112",
-      "code_system_name": "RouteOfAdministration"
-    },
-    "instructions": "Possible flu-like symptoms for three days.",
-    "education_type": {
-      "name": "immunization education",
-      "code": "171044003",
-      "code_system": "2.16.840.1.113883.6.96"
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c58603004e6fefc38aeb5"
-    },
-    "date": "1998-12-14T16:00:00.000Z",
-    "product": {
-      "name": "Influenza virus vaccine",
-      "code": "88",
-      "code_system": "2.16.840.1.113883.6.59",
-      "code_system_name": "CVX",
-      "translation": {
-        "name": "influenza, live, intranasal",
-        "code": "111",
         "code_system": "2.16.840.1.113883.6.59",
         "code_system_name": "CVX"
       }
@@ -598,68 +474,7 @@ var immunizations=[
 var medications=[
   {
     "_id": {
-      "$oid": "521c55ea3004e6fefc38aea0"
-    },
-    "date_range": {
-      "start": "2011-02-28T16:00:00.000Z",
-      "end": "2012-02-29T16:00:00.000Z"
-    },
-    "product": {
-      "name": "Albuterol 0.09 MG/ACTUAT inhalant solution",
-      "code": "329498",
-      "code_system": "2.16.840.1.113883.6.88",
-      "translation": {
-        "name": "Proventil 0.09 MG/ACTUAT inhalant solution",
-        "code": "573621",
-        "code_system": "2.16.840.1.113883.6.88",
-        "code_system_name": "RxNorm"
-      }
-    },
-    "dose_quantity": {
-      "value": "1",
-      "unit": null
-    },
-    "rate_quantity": {
-      "value": "90",
-      "unit": "ml/min"
-    },
-    "precondition": {
-      "name": "Wheezing",
-      "code": "56018004",
-      "code_system": "2.16.840.1.113883.6.96"
-    },
-    "reason": {
-      "name": "Bronchitis",
-      "code": "32398004",
-      "code_system": "2.16.840.1.113883.6.96"
-    },
-    "route": {
-      "name": "RESPIRATORY (INHALATION)",
-      "code": "C38216",
-      "code_system": "2.16.840.1.113883.3.26.1.1",
-      "code_system_name": "NCI Thesaurus"
-    },
-    "vehicle": {
-      "name": "drug vehicle",
-      "code": "412307009",
-      "code_system": "2.16.840.1.113883.6.96",
-      "code_system_name": null
-    },
-    "administration": {
-      "name": "INHALANT",
-      "code": "C42944",
-      "code_system": "2.16.840.1.113883.3.26.1.1",
-      "code_system_name": "NCI Thesaurus"
-    },
-    "prescriber": {
-      "organization": "Good Health Clinic",
-      "person": null
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c585f3004e6fefc38aeb0"
+      "$oid": "52293bfb3004237dd08650b8"
     },
     "date_range": {
       "start": "2011-02-28T16:00:00.000Z",
@@ -722,22 +537,7 @@ var medications=[
 var problems=[
   {
     "_id": {
-      "$oid": "521c55eb3004e6fefc38aea9"
-    },
-    "date_range": {
-      "start": "1998-02-27T16:00:00.000Z",
-      "end": "2011-01-02T16:00:00.000Z"
-    },
-    "name": "Complaint",
-    "status": "Active",
-    "age": 57,
-    "code": "409586006",
-    "code_system": "2.16.840.1.113883.6.96",
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c58603004e6fefc38aeba"
+      "$oid": "52293bfb3004237dd08650cc"
     },
     "date_range": {
       "start": "1998-02-27T16:00:00.000Z",
@@ -754,38 +554,7 @@ var problems=[
 var procedures=[
   {
     "_id": {
-      "$oid": "521c55eb3004e6fefc38aea7"
-    },
-    "date": "2011-02-02T16:00:00.000Z",
-    "name": "Colonic polypectomy",
-    "code": "274025005",
-    "code_system": "2.16.840.1.113883.6.96",
-    "specimen": {
-      "name": null,
-      "code": null,
-      "code_system": null
-    },
-    "performer": {
-      "organization": null,
-      "street": [
-        "17 Daws Rd."
-      ],
-      "city": "Blue Bell",
-      "state": "MA",
-      "zip": "02368",
-      "country": "US",
-      "phone": null
-    },
-    "device": {
-      "name": "General Acute Care Hospital",
-      "code": "GACH",
-      "code_system": "2.16.840.1.113883.5.111"
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c55eb3004e6fefc38aea6"
+      "$oid": "52293bfb3004237dd08650c6"
     },
     "date": "2011-02-14T16:00:00.000Z",
     "name": "Colonic polypectomy",
@@ -816,7 +585,7 @@ var procedures=[
   },
   {
     "_id": {
-      "$oid": "521c55eb3004e6fefc38aea8"
+      "$oid": "52293bfb3004237dd08650cb"
     },
     "date": "2011-02-02T16:00:00.000Z",
     "name": "Colonic polypectomy",
@@ -847,69 +616,7 @@ var procedures=[
   },
   {
     "_id": {
-      "$oid": "521c58603004e6fefc38aeb7"
-    },
-    "date": "2011-02-14T16:00:00.000Z",
-    "name": "Colonic polypectomy",
-    "code": "274025005",
-    "code_system": "2.16.840.1.113883.6.96",
-    "specimen": {
-      "name": null,
-      "code": null,
-      "code_system": null
-    },
-    "performer": {
-      "organization": null,
-      "street": [
-        "17 Daws Rd."
-      ],
-      "city": "Blue Bell",
-      "state": "MA",
-      "zip": "02368",
-      "country": "US",
-      "phone": null
-    },
-    "device": {
-      "name": "Colonoscope",
-      "code": "90412006",
-      "code_system": "2.16.840.1.113883.6.96"
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c58603004e6fefc38aeb8"
-    },
-    "date": "2011-02-02T16:00:00.000Z",
-    "name": "Colonic polypectomy",
-    "code": "274025005",
-    "code_system": "2.16.840.1.113883.6.96",
-    "specimen": {
-      "name": null,
-      "code": null,
-      "code_system": null
-    },
-    "performer": {
-      "organization": null,
-      "street": [
-        "17 Daws Rd."
-      ],
-      "city": "Blue Bell",
-      "state": "MA",
-      "zip": "02368",
-      "country": "US",
-      "phone": null
-    },
-    "device": {
-      "name": "General Acute Care Hospital",
-      "code": "GACH",
-      "code_system": "2.16.840.1.113883.5.111"
-    },
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521c58603004e6fefc38aeb9"
+      "$oid": "52293bfb3004237dd08650c8"
     },
     "date": "2011-02-02T16:00:00.000Z",
     "name": "Colonic polypectomy",
@@ -1294,7 +1001,7 @@ var labs=[
   },
   {
     "_id": {
-      "$oid": "521c58603004e6fefc38aeb2"
+      "$oid": "52293bfb3004237dd08650bc"
     },
     "name": "CBC WO DIFFERENTIAL",
     "code": "43789009",
@@ -1333,273 +1040,6 @@ var labs=[
         "value": 123,
         "unit": "10+3/ul",
         "code": "26515-7",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      }
-    ],
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521d79ff30041ef425e0b7b7"
-    },
-    "name": "CBC WO DIFFERENTIAL",
-    "code": "43789009",
-    "code_system": "2.16.840.1.113883.6.96",
-    "code_system_name": "SNOMED CT",
-    "results": [
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "HGB",
-        "value": 13,
-        "unit": "g/dl",
-        "code": "30313-1",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "WBC",
-        "value": 6,
-        "unit": "10+3/ul",
-        "code": "33765-9",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "PLT",
-        "value": 123,
-        "unit": "10+3/ul",
-        "code": "26515-7",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      }
-    ],
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521d7b0130041ef425e0b7d2"
-    },
-    "name": "CBC WO DIFFERENTIAL",
-    "code": "43789009",
-    "code_system": "2.16.840.1.113883.6.96",
-    "code_system_name": "SNOMED CT",
-    "results": [
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "HGB",
-        "value": 13,
-        "unit": "g/dl",
-        "code": "30313-1",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "WBC",
-        "value": 6,
-        "unit": "10+3/ul",
-        "code": "33765-9",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "PLT",
-        "value": 123,
-        "unit": "10+3/ul",
-        "code": "26515-7",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      }
-    ],
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "521d7b7d30041ef425e0b7ea"
-    },
-    "name": "CBC WO DIFFERENTIAL",
-    "code": "43789009",
-    "code_system": "2.16.840.1.113883.6.96",
-    "code_system_name": "SNOMED CT",
-    "results": [
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "HGB",
-        "value": 13,
-        "unit": "g/dl",
-        "code": "30313-1",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "WBC",
-        "value": 6,
-        "unit": "10+3/ul",
-        "code": "33765-9",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2000-03-22T16:00:00.000Z",
-        "name": "PLT",
-        "value": 123,
-        "unit": "10+3/ul",
-        "code": "26515-7",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      }
-    ],
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "5225aa59300437df4d68550d"
-    },
-    "name": null,
-    "code": null,
-    "code_system": null,
-    "code_system_name": null,
-    "results": [
-      {
-        "date": "2012-12-05T16:00:00.000Z",
-        "name": "GLUCOSE",
-        "value": null,
-        "unit": null,
-        "code": "UNK",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2012-12-05T16:00:00.000Z",
-        "name": "GLUCOSE",
-        "value": null,
-        "unit": null,
-        "code": "UNK",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      }
-    ],
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "5225aa59300437df4d685510"
-    },
-    "name": null,
-    "code": null,
-    "code_system": null,
-    "code_system_name": null,
-    "results": [
-      {
-        "date": "2012-12-05T16:00:00.000Z",
-        "name": "GLUCOSE",
-        "value": null,
-        "unit": null,
-        "code": "UNK",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2012-12-05T16:00:00.000Z",
-        "name": "GLUCOSE",
-        "value": null,
-        "unit": null,
-        "code": "UNK",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      }
-    ],
-    "uid": 0
-  },
-  {
-    "_id": {
-      "$oid": "5225aa59300437df4d685511"
-    },
-    "name": null,
-    "code": null,
-    "code_system": null,
-    "code_system_name": null,
-    "results": [
-      {
-        "date": "2012-12-05T16:00:00.000Z",
-        "name": "GLUCOSE",
-        "value": null,
-        "unit": null,
-        "code": "UNK",
-        "code_system": "2.16.840.1.113883.6.1",
-        "code_system_name": "LOINC",
-        "reference": {
-          "low": null,
-          "high": null
-        }
-      },
-      {
-        "date": "2012-12-05T16:00:00.000Z",
-        "name": "GLUCOSE",
-        "value": null,
-        "unit": null,
-        "code": "UNK",
         "code_system": "2.16.840.1.113883.6.1",
         "code_system_name": "LOINC",
         "reference": {
