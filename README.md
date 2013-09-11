@@ -74,7 +74,9 @@ When you're uploading the xml file, make sure that you have opened up the bindaa
 If you don't have the bindaas api ready, please comment out the following line in <code>routes/index.js</code>
 
 <code>uploadToBindaas(currentUser.uid,currentUser.xml);</code>
+and use <code> showTimeline();</code> in the <code>views/index.ejs views/timeline.ejs</code> instead of <code>showTimelineAjax();//if you want to use ajax </code>
 
+The same for <code>views/detail.ejs</code>,<code>views/timeline.ejs</code>and<code>views/labs.ejs</code>
 
 **Ensure that the <code>public/uploads</code> folder is readable/writable.**
 
@@ -104,6 +106,8 @@ To access the datas, another application interface has been created for the curr
 /timeline/procedure.json
 
 /timeline/vital.json
+
+/timeline/timeline.json
 ```
 
 
@@ -118,7 +122,7 @@ The web client data is retrieved via ajax through the above APIs. It is accessib
 Once again, you need to ensure that the bindaas server is running and the corresponding database collection is selected.
 You may edit the 
 
-<code> public/javascripts/bindaas.js</code> 
+<code> public/js/timeline.js</code> 
 
 api key and the API urls in the 
 
@@ -128,16 +132,74 @@ api key and the API urls in the
 
 To make asyncronize api calls and efficient data updating, we used ajax for commnications between the client and the node server.The codes can be found in
 
-<code> public/javascripts/bindaas.js</code> 
+<code> public/js/timeline.js</code> 
 
 To make the data updating cleaner, we used a template engine named ejs(embeddedjs) for templating. The templetes can be found in 
 
 <code> public/templates.</code>
 
-Besides the ajax timeline view, we also used a simple view which reads the xml file and then render the whole page directly in the 
+Besides the ajax timeline view, we also used a simple view which reads the <code>public/js/data.js</code> and then render the whole page directly in the 
 
-<code>views/index.ejs and views/ccda/*</code>
+<code>public/templates/*.ejs</code>
 
 For testing purposes, you may use the ccda files in the 
 
 <code>public/uploads/</code> folder.
+
+------------------------------------
+
+In general, to set up the system, you'll need to do the following works
+
+1. Start Mongodb
+
+<code>mongod</code>to start mongo db
+<code>mongo</code> to start the mongo shell
+
+2. Use the database specified in
+
+<code>settings.js</code>
+
+3. Insert a counters collection in the database
+
+<code>
+db.counters.insert(
+   {
+      _id: "uid",
+      seq: 0
+   }
+)
+</code>
+
+4. Setup the Bindaas Server
+
+<code>
+	cd $bindaas_home/bin
+</code>
+<code>
+	./startup.sh
+</code>
+
+5. Setup the Bindaas API(VERY IMPORTANT)
+
+6. Run the node server
+
+<code>node app</code>
+
+7. Set write/read permission for 
+
+<code>public/uploads</code>
+
+8. Go to the browser and upload the CCDA xml file.
+
+9. If the bindaas api is not ready,comment out the following line in 
+
+<code>routes/index.js</code>
+
+<code>uploadToBindaas(currentUser.uid,currentUser.xml);</code>
+and use <code> showTimeline();</code> in the <code>views/index.ejs views/timeline.ejs</code> instead of <code>showTimelineAjax();//if you want to use ajax </code>
+
+The same for <code>views/detail.ejs</code>,<code>views/timeline.ejs</code>and<code>views/labs.ejs</code>
+
+10. The outcome would be similar to the 
+
+<code>http://lincolnnus.github.io/Timeline-Bootstrap</code>project
