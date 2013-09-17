@@ -1,71 +1,72 @@
- 	<% if (!user) { %>
- 	<div class="jumbotron">
-      <div class="container">
-        <h1>Welcome to Timeline Viewer</h1> 
-		<p>Timeline Viewer is Based on Node.js</p>   
-		<p>  
-			<a class="btn btn-primary btn-lg" href="/timeline/login">Login</a>
-		    <a class="btn btn-default btn-lg" href="/timeline/reg">Register</a> 
-		</p> 
-      </div>
-    </div>
-    <% } else if(user.xml!=null) { %>
+<!-- Index Timeline View -->
+<% if (!user) { %>
+	<div class="jumbotron">
+  <div class="container">
+    <h1>Welcome to Timeline Viewer</h1> 
+	<p>Timeline Viewer is Based on Node.js</p>   
+	<p>  
+		<a class="btn btn-primary btn-lg" href="/timeline/login">Login</a>
+	    <a class="btn btn-default btn-lg" href="/timeline/reg">Register</a> 
+	</p> 
+  </div>
+</div>
+<% } else if(user.xml!=null) { %>
 
-	  <div class="row" id="demographics">
-	  </div>
-	  <hr>
-	  <div class="row">
-	  	<div class="col-xs-9" id="timeline">
-	  	</div>
-	  	<div class="col-xs-3">
-	  		<div class="row">
-	  			<div class="col-xs-12">
-	  				<div class="header-unit">
-					  <h3><i class="icon-plan"></i> Plan of Care</h3>
-					  <hr>
-					  <strong>Office Consultant</strong>
-					  <p class="gray">May 28, 2007</p>
-					  <p> Consult with Dr.George </p>
-					  <strong>Sputum Culture</strong>
-					  <p class="gray">May 28, 2007</p>
-					  <p>Instructions</p>
-					  <strong>Chest X Ray</strong>
-					  <p class="gray">May 28, 2007</p>
-					  <p>Instructions</p>
-					</div>
-	  			</div>
-	  		</div>
-	  		<div class="row">
-	  			<div class="col-xs-12" id="allergies">
-	  			</div>
-	  		</div>
-	  		<div class="row">
-	  			<div class="col-xs-12">
-	  				<div class="header-unit">
-					  <h3>Recommendations</h3>
-					  <hr>
-					  <strong>Provider</strong>
-					  <p> 
-					  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
-					  	<small class="gray">Phone:</small>415-555-1229
-					  </p>
-					</div>
-	  			</div>
-	  		</div>
-	  	</div>
-	  </div>
-	  <hr>
-	  <footer>
-		<p>© GSOC 2013</p>
-	  </footer>
-	  <script src="/js/jquery.js"></script>
-	  <script src="/js/ejs.js"></script>
-	  <script src="/js/data.js"></script>
-	  <script src="/js/timeline.js"></script>
-	  <script>
-	    //showTimeline();
-	    showTimelineAjax();//if you want to use ajax 
-	  </script>
-	<% } else { %> 
-		<a class="btn btn-primary btn-lg" href="/timeline/upload">Upload New CCDA Document</a>
-	<% } %>
+  <div class="row" id="demographics">
+  </div>
+  <hr>
+  <div class="row">
+  	<div class="col-xs-9" id="timeline">
+  	</div>
+  	<div class="col-xs-3">
+  		<div class="row">
+  			<div class="col-xs-12">
+  				<div class="header-unit">
+				  <h3><i class="icon-plan"></i> Plan of Care</h3>
+				  <hr>
+				  <strong>Office Consultant</strong>
+				  <p class="gray">May 28, 2007</p>
+				  <p> Consult with Dr.George </p>
+				  <strong>Sputum Culture</strong>
+				  <p class="gray">May 28, 2007</p>
+				  <p>Instructions</p>
+				  <strong>Chest X Ray</strong>
+				  <p class="gray">May 28, 2007</p>
+				  <p>Instructions</p>
+				</div>
+  			</div>
+  		</div>
+  		<div class="row">
+  			<div class="col-xs-12" id="allergies">
+  			</div>
+  		</div>
+  		<div class="row">
+  			<div class="col-xs-12">
+  				<div class="header-unit">
+				  <h3>Recommendations</h3>
+				  <hr>
+				  <strong>Provider</strong>
+				  <p> 
+				  	<small class="gray">Address:</small>17 Daws Road, Portland, OR 97006<br>
+				  	<small class="gray">Phone:</small>415-555-1229
+				  </p>
+				</div>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  <hr>
+  <footer>
+	<p>© GSOC 2013</p>
+  </footer>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/ejs.js"></script>
+  <script src="/js/data.js"></script>
+  <script src="/js/timeline.js"></script>
+  <script>
+    //showTimeline();
+    showTimelineAjax();//if you want to use ajax 
+  </script>
+<% } else { %> 
+	<a class="btn btn-primary btn-lg" href="/timeline/upload">Upload New CCDA Document</a>
+<% } %>

@@ -1,3 +1,4 @@
+//User Model Setup
 var mongodb = require('./db');
 
 function User(user) {

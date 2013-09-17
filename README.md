@@ -38,7 +38,6 @@ The node server is dependent on the following packages
 "express": "3.3.3",
 "express-partials":"*",
 "ejs": "~0.7.1",
-"underscore":">=1.5.1",
 "jsdom":">=0.7.0",
 "mongodb": ">= 0.9.9",
 "mongojs": "*",

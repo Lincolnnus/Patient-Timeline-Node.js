@@ -1,3 +1,4 @@
+//Data for the timeline project in case Bindaas API is not ready
 var demographics = {
   "_id": {
     "$oid": "521c55ea3004e6fefc38ae9f"

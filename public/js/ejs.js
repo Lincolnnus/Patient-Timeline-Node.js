@@ -1,3 +1,4 @@
+//Ejs.js. Embedded Javascript
 (function(){
     
 

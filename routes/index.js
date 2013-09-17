@@ -1,15 +1,16 @@
+//Please Edit the API_KEY, API_DOMAIN, API_PORT to Configure your Bindaas API
 var api_key="105bf231-a566-4350-8a70-b555f5eb7832";
 var api_domain= "localhost";
 var api_port = "9099";
 
-var crypto = require('crypto');
-var User = require('../models/user.js');
-var fs = require('fs')
-  , http = require('http')
-  , _ = require('underscore')
-  , path = require('path')
-  , BlueButton = require(path.join(__dirname, '../node_modules/bluebutton/build/bluebutton'));
+var crypto = require('crypto');//encryption
+var User = require('../models/user.js');//Load User Model
+var fs = require('fs') //File System
+  , http = require('http') //HTTP
+  , path = require('path') //Path
+  , BlueButton = require(path.join(__dirname, '../node_modules/bluebutton/build/bluebutton'));//Using Blue Button.js For CCDA XML data Parsing
 
+//Please Specify your Bindaas API here.
 var saveDemographicsUrl = '/services/ccda/demographics/submit/json',
 saveAllergyUrl = '/services/ccda/allergy/submit/json',
 saveImmunizationUrl = '/services/ccda/immunization/submit/json',
@@ -180,57 +181,67 @@ module.exports = function(app) {
     req.flash('success', 'Successfully Logged Out');
     res.redirect('/timeline');
   });
+  //get demographics
   app.get('/timeline/demographics.json',function(req,res){
       getCCDA(demographicsUrl,req.session.user.uid,function(demographics){
       res.send(JSON.parse(demographics)[0]);
     });
   });
+  //get allergies
   app.get('/timeline/allergy.json',function(req,res){
       getCCDA(allergyUrl,req.session.user.uid,function(allergies){
       res.send(JSON.parse(allergies));
     });
   });
+  //get immunizations
   app.get('/timeline/immunization.json',function(req,res){
       getCCDA(immunizationUrl,req.session.user.uid,function(immunizations){
       res.send(JSON.parse(immunizations));
     });
   });
+  //get medications
   app.get('/timeline/medication.json',function(req,res){
       getCCDA(medicationUrl,req.session.user.uid,function(medications){
       res.send(JSON.parse(medications));
     });
   });
+  //get labs 
   app.get('/timeline/lab.json',function(req,res){
       getCCDA(labUrl,req.session.user.uid,function(labs){
       res.send(JSON.parse(labs));
     });
   });
+  //get encounters
   app.get('/timeline/encounter.json',function(req,res){
       getCCDA(encounterUrl,req.session.user.uid,function(encounters){
       res.send(JSON.parse(encounters));
     });
   });
+  //get problems
   app.get('/timeline/problem.json',function(req,res){
       getCCDA(problemUrl,req.session.user.uid,function(problems){
       res.send(JSON.parse(problems));
     });
   });
+  //get procedures
   app.get('/timeline/procedure.json',function(req,res){
       getCCDA(procedureUrl,req.session.user.uid,function(procedures){
       res.send(JSON.parse(procedures));
     });
   });
+  //get vitals
   app.get('/timeline/vital.json',function(req,res){
       getCCDA(vitalUrl,req.session.user.uid,function(vitals){
       res.send(JSON.parse(vitals));
     });
   });
+  //get timeline 
   app.get('/timeline/timeline.json',function(req,res){
       getCCDA(timelineUrl,req.session.user.uid,function(timeline){
       res.send(JSON.parse(timeline));
     });
   });
-  //Get the timeline view
+  //get timeline view
   app.get('/timeline/timeline',function(req,res){
   res.render('timeline',{
     title:'TimeLine',
@@ -240,7 +251,7 @@ module.exports = function(app) {
 };
 //upload the xml to the bindaas api via the bindaas api using the bluebutton.js
 function uploadToBindaas(uid,xml){
-
+    //Parse ccda.xml
     var record = fs.readFileSync(path.resolve(__dirname, '../public/'+xml), 'utf-8');
     var bb = BlueButton(record);
     var allergies = bb.allergies(),
@@ -254,11 +265,14 @@ function uploadToBindaas(uid,xml){
       procedures = bb.procedures(),
       vitals = bb.vitals();
       demographics.uid = uid;
+      //Save Demographics
       saveCCDA(saveDemographicsUrl,demographics);
+      //Save Allergies
       for (var i=0;i<allergies.length;i++){
         allergies[i].uid = uid;
         saveCCDA(saveAllergyUrl,allergies[i]);
       }
+      //Save Medications
       for (var i=0;i<medications.length;i++){
         medications[i].uid = uid;
         saveCCDA(saveMedicationUrl,medications[i]);
@@ -270,10 +284,12 @@ function uploadToBindaas(uid,xml){
         record.type='medication';
         saveCCDA(saveTimelineUrl,record);
       }
+      //Save Labs
       for (var i=0;i<labs.length;i++){
         labs[i].uid = uid;
         saveCCDA(saveLabUrl,labs[i]);
       }
+      //Save Immunizations
       for (var i=0;i<immunizations.length;i++){
         immunizations[i].uid = uid;
         saveCCDA(saveImmunizationUrl,immunizations[i]);
@@ -285,6 +301,7 @@ function uploadToBindaas(uid,xml){
         record.type='immunization';
         saveCCDA(saveTimelineUrl,record);
       }
+      //Save Procedures
       for (var i=0;i<procedures.length;i++){
         procedures[i].uid = uid;
         saveCCDA(saveProcedureUrl,procedures[i]);
@@ -296,6 +313,7 @@ function uploadToBindaas(uid,xml){
         record.type='procedure';
         saveCCDA(saveTimelineUrl,record);
       }
+      //Save Problems
       for (var i=0;i<problems.length;i++){
         problems[i].uid = uid;
         saveCCDA(saveProblemUrl,problems[i]);
@@ -311,6 +329,7 @@ function uploadToBindaas(uid,xml){
         vitals[i].uid = uid;
         saveCCDA(saveVitalUrl,vitals[i]);
       }*/
+      //Save Encounters
       for (var i=0;i<encounters.length;i++){
         encounters[i].uid = uid;
         saveCCDA(saveEncounterUrl,encounters[i]);

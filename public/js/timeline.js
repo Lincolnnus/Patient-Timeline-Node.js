@@ -1,3 +1,4 @@
+//Show Detail Page Using Ajax
 function showDetailAjax(){
     getCCDA('/timeline/demographics.json',function(demographics){
       new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
@@ -18,6 +19,7 @@ function showDetailAjax(){
         new EJS({url: '../templates/encounters.ejs'}).update('encounters', {encounters: encounters});
     });
 }
+//Show Timeline Page Using Ajax
 function showTimelineAjax(){
     getCCDA('/timeline/demographics.json',function(demographics){
       new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
@@ -29,6 +31,7 @@ function showTimelineAjax(){
       new EJS({url: 'templates/timeline.ejs'}).update('timeline', {timeline: restructureTimeline(timeline)});
     });
 }
+//Show Labs Page Using Ajax
 function showLabsAjax(){
     getCCDA('/timeline/demographics.json',function(demographics){
       new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
@@ -37,6 +40,8 @@ function showLabsAjax(){
       new EJS({url: '../templates/labs.ejs'}).update('labs', {labs: labs});
     });
 }
+
+//Ajax Call to the CCDA Timeline API.
 function getCCDA(url,callback){
      $.ajax({
         url: url,
@@ -45,6 +50,8 @@ function getCCDA(url,callback){
       callback(data);
     });
 }
+
+//Normal Show Detail without Ajax
 function showDetail(){
     new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
     new EJS({url: '../templates/immunizations.ejs'}).update('immunizations', {immunizations: immunizations});
@@ -53,11 +60,15 @@ function showDetail(){
     new EJS({url: '../templates/problems.ejs'}).update('problems', {problems: problems});
     new EJS({url: '../templates/procedures.ejs'}).update('procedures', {procedures: procedures});
 }
+
+//Normal Show Timeline without Ajax
 function showTimeline(){
     new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
     new EJS({url: '../templates/allergies.ejs'}).update('allergies', {allergies: allergies});
     new EJS({url: '../templates/timeline.ejs'}).update('timeline', {timeline: restructureTimeline(timeline)});
 }
+
+//Restruct Timeline Data with Raw Timeline Data
 function restructureTimeline(timeline){
   var restruct = [];
   for (var i=0; i<timeline.length; i++){
@@ -65,6 +76,8 @@ function restructureTimeline(timeline){
   }
   return restruct.sort(function(a,b) { return parseFloat(b.year) - parseFloat(a.year) } );
 }
+
+//Merge Timeline Data Based on Year
 function mergeTimeline(restruct, record){
   var yearExist = false;
   for (var i=0;i<restruct.length;i++){
@@ -83,11 +96,13 @@ function mergeTimeline(restruct, record){
   }
   return restruct;
 }
-
+//Normal Show Labs
 function showLabs(){
   new EJS({url: '../templates/demographics.ejs'}).update('demographics', {demographics: demographics});
   new EJS({url: '../templates/labs.ejs'}).update('labs', {labs: labs});
 }
+
+//Format Date Given Json Date data
 function formatDate(jsonDate)
 {
   if(jsonDate == null){
@@ -125,6 +140,8 @@ function formatDate(jsonDate)
   return year+'.'+month+'.'+date;
   }
 }
+
+//Click Show More Url
 function showMore(url){
   window.open(url);
 }
