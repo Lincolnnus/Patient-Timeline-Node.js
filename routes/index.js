@@ -252,7 +252,7 @@ module.exports = function(app) {
 //upload the xml to the bindaas api via the bindaas api using the bluebutton.js
 function uploadToBindaas(uid,xml){
     //Parse ccda.xml
-    var record = fs.readFileSync(path.resolve(__dirname, '../public/'+xml), 'utf-8');
+    var record = fs.readFileSync(path.resolve(__dirname, '../public/timeline/'+xml), 'utf-8');
     var bb = BlueButton(record);
     var allergies = bb.allergies(),
       demographics = bb.demographics(),
