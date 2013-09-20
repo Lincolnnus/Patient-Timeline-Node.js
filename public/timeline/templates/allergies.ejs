@@ -1,0 +1,12 @@
+<!-- Allergies Template -->
+<div class="header-unit">
+  <h3>Allergies</h3>
+  <hr>
+  <% for (var i=0;i<allergies.length;i++){%>
+  	  <strong><%= allergies[i].allergen.name %></strong>
+	  <p>
+	  <small class="gray">Reaction:</small><%= allergies[i].reaction.name %><br>
+	  <small class="gray">Severity:</small><%= allergies[i].severity %>
+	  </p>
+  <%}%>
+</div>
