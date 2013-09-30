@@ -202,3 +202,4 @@ The same for <code>views/detail.ejs</code>,<code>views/timeline.ejs</code>and<co
 10. The outcome would be similar to the 
 
 <code>http://lincolnnus.github.io/Timeline-Bootstrap</code>project
+One demo version is available at<code>http://imaging.cci.emory.edu/timeline</code> with user name: test, password: test.

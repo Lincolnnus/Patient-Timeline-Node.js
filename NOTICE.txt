@@ -1,0 +1,32 @@
+==========================================================
+== NOTICE file for use with Patient Timeline Node.js ==
+==========================================================
+
+Patient Timeline Node.js
+
+This project is part of A Timeline Viewer of Patient Medical Records project under the Google Summer of Code 2013 program.
+
+The following individuals were involved in the development
+Ashish Sharma — ashish.sharma@emory.edu
+Shaohuan Li   - shaohuan.li@gmail.com
+
+This project also includes executable code from Project 
+Bindaas, developed by Ashish Sharma and Nadir Saghar from
+Emory University.
+
+Copyright 2012 - 2013, Emory University, Atlanta, GA
+
+This product was developed in the Department of Biomedical
+Informatics, Emory University, Atlanta, GA
+
+The following individuals were involved in the development
+Nadir Saghar  - nadirsaghar@emory.edu
+Ashish Sharma - ashish.sharma@emory.edu
+
+The project also includes Bluebutton.js https://github.com/blue-button/bluebutton.js, developed by 
+Tom Black -- https://github.com/blacktm
+Rob Dodson -- lets.email.rob@gmail.com
+
+The project design is inspired from EMR Redesign for Patients by
+
+Russell Hertzberg, SoftServe Inc. www.softserveinc.com
